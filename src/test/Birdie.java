@@ -17,7 +17,7 @@ public class Birdie extends WorldObject  {
     public Birdie(int x, int y, int width, int height, Simulation s) {
         super( x, y, width, height, s);
     }
-
+        //testing the whole "push to Github thing"
     @Override
     public void tick() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
