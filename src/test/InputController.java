@@ -21,9 +21,9 @@ public class InputController {
     public ControlScheme scheme;
     Set<Integer> activePressedKeys = new HashSet<Integer>();
     Set<Integer> activeReleasedKeys = new HashSet<Integer>();
-    private final Camera pc;
+    private final IControllable pc;
 
-    public InputController(Camera pc) {
+    public InputController(IControllable pc) {
         this.pc = pc;
         scheme = new ControlScheme();
         scheme.addAction(VK_UP, new Action(pc));

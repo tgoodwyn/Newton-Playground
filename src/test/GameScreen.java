@@ -28,6 +28,7 @@ public class GameScreen extends Screen implements KeyListener {
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
     private final GameLogic gl;
+
     public GameScreen() {
         super();
         // light blue        
@@ -35,21 +36,22 @@ public class GameScreen extends Screen implements KeyListener {
         // these two methods allow key events
         addKeyListener(this);
         setFocusable(true);
-        
+
         // create the model for the game
         gl = new GameLogic();
         // create a renderer and attach the game logic, via the level camera
         renderer = new GraphicsRenderer(gl.getLevel().getCamera());
         // starts the game loop
-        stopwatch = new Timer(20, gameTimer);
+        stopwatch = new Timer(17, gameTimer);
         stopwatch.start();
 
     }
 
     ActionListener gameTimer = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            gl.tick();
-            repaint();
+            gl.tick(); // physics update
+            repaint(); // graphics update
+
         }
     };
 
