@@ -14,7 +14,7 @@ import test.ControlScheme;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class InputController {
 

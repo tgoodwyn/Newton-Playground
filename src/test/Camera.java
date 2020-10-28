@@ -13,7 +13,7 @@ import java.util.Collections;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class Camera extends WorldObject implements IControllable {
 

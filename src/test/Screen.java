@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class Screen extends JPanel {
     public static final int WIDTH = 800;

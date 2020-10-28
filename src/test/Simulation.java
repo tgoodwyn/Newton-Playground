@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 class Simulation  {
     ArrayList<WorldObject> dynamics = new ArrayList<WorldObject>();

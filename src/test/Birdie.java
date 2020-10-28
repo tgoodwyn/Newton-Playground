@@ -10,7 +10,7 @@ import java.awt.Image;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class Birdie extends WorldObject  {
     

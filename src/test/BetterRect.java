@@ -9,7 +9,7 @@ import java.awt.Point;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class BetterRect {
 

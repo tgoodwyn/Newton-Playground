@@ -10,7 +10,7 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public abstract class WorldObject extends BetterRect 
         implements ISimulatable {

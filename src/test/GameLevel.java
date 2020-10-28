@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class GameLevel {
 

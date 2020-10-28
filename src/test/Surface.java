@@ -7,7 +7,7 @@ package test;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class Surface {
 

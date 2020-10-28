@@ -9,7 +9,7 @@ import java.awt.Image;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 class Goal {
 

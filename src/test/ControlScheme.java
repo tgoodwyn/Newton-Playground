@@ -10,7 +10,7 @@ import java.util.Hashtable;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class ControlScheme {
 

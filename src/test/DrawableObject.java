@@ -9,7 +9,7 @@ import java.awt.Graphics;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public abstract class DrawableObject extends WorldObject {
 

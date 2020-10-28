@@ -9,7 +9,7 @@ import test.InputController;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class GameLogic implements ISimulatable {
 

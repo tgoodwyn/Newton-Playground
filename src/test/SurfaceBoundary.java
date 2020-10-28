@@ -7,7 +7,7 @@ package test;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 class SurfaceBoundary {
     int yCoord;

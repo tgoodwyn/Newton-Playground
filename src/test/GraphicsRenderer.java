@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class GraphicsRenderer {
     private final Camera cam;

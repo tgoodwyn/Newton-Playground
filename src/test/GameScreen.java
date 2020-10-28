@@ -21,7 +21,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class GameScreen extends Screen implements KeyListener {
 

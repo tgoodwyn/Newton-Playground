@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
 public class Window extends JFrame{
     
