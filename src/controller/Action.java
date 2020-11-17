@@ -11,7 +11,7 @@ package controller;
  */
 public class Action {
 
-    enum ActionType {
+    public enum ActionType {
         PRESSED,
         RELEASED
     }

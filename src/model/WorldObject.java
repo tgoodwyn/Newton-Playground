@@ -18,9 +18,9 @@ import java.awt.Rectangle;
 public abstract class WorldObject extends BetterRect 
         implements ISimulatable {
 
-    Simulation sim;
+    public Simulation sim;
 
-    WorldObject(int x, int y, int width, int height, Simulation s) {
+    public WorldObject(int x, int y, int width, int height, Simulation s) {
         super(x, y, width, height);
         this.sim = s;
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author team 2
  */
-class Simulation  {
+public class Simulation  {
     ArrayList<WorldObject> dynamics = new ArrayList<WorldObject>();
     ArrayList<WorldObject> statics = new ArrayList<WorldObject>();
     ArrayList<DrawableObject> allDrawable = new ArrayList<DrawableObject>();
