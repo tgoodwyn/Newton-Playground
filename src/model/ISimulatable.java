@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package model;
 
 /**
  *
  * @author team 2
  */
-public class ScreenObject {
+public interface ISimulatable {
     
+    public void tick();
+    public Simulation getSimulation();
 }

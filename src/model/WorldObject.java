@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package model;
 
+import model.Simulation;
+import model.ISimulatable;
+import utilities.BetterRect;
 import java.awt.Image;
 import java.awt.Rectangle;
 

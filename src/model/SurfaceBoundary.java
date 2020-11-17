@@ -3,14 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package model;
 
 /**
  *
  * @author team 2
  */
-public interface ISimulatable {
+class SurfaceBoundary {
+    int yCoord;
+
+    public SurfaceBoundary(int y) {
+        yCoord = y;
+    }
     
-    public void tick();
-    public Simulation getSimulation();
+    public int getYCoord() {
+        return yCoord;
+    }
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package controller;
 
-import test.InputController;
+import controller.Action;
 import java.util.Hashtable;
 
 /**

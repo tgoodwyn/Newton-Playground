@@ -5,6 +5,10 @@
  */
 package test;
 
+import view.GameScreen;
+import view.Window;
+import view.Screen;
+
 /**
  *
  * @author team 2

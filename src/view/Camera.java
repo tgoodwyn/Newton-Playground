@@ -3,13 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package view;
 
+import utilities.BetterRect;
+import controller.IControllable;
+import view.Screen;
+import view.DrawableObject;
+import view.ShapeObject;
+import controller.Action;
 import java.awt.Graphics;
 import java.awt.Point;
 import static java.awt.event.KeyEvent.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import model.Simulation;
+import model.WorldObject;
 
 /**
  *

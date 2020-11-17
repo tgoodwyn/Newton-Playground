@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package model;
 
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -13,6 +13,8 @@ import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import view.Camera;
+import view.Texture;
 
 /**
  *

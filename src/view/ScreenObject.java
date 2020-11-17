@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package view;
 
 /**
  *
  * @author team 2
  */
-class SurfaceBoundary {
-    int yCoord;
-
-    public SurfaceBoundary(int y) {
-        yCoord = y;
-    }
+public class ScreenObject {
     
-    public int getYCoord() {
-        return yCoord;
-    }
 }

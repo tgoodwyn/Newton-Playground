@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package model;
 
 import java.awt.Image;
+import view.Texture;
 
 /**
  *

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package view;
 
 import java.awt.Graphics;
+import model.Simulation;
+import model.WorldObject;
 
 /**
  *

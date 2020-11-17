@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package view;
 
+import model.GameLogic;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;

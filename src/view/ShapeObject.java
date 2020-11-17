@@ -3,30 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package view;
 
 import java.awt.Graphics;
-import java.awt.Image;
+import model.Simulation;
 
 /**
  *
  * @author team 2
  */
-public class Birdie extends WorldObject  {
-    
-    public Birdie(int x, int y, int width, int height, Simulation s) {
-        super( x, y, width, height, s);
+public class ShapeObject extends DrawableObject {
+
+    public ShapeObject(int x, int y, int width, int height, Simulation s) {
+        super(x, y, width, height, s);
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void tick() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public void draw(Graphics g, int screenX, int screenY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-
 }

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package controller;
 
 import static java.awt.event.KeyEvent.*;
 import java.util.HashSet;
 import java.util.Set;
-import test.Action;
-import test.Camera;
-import test.ControlScheme;
+import controller.Action;
+import view.Camera;
+import controller.ControlScheme;
 
 /**
  *
