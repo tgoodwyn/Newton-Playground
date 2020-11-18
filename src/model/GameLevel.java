@@ -13,8 +13,8 @@ import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import view.Camera;
-import view.Texture;
+import view.graphics.Camera;
+import view.graphics.Texture;
 
 /**
  *

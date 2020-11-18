@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.graphics;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class GraphicsRenderer {
     private final Camera cam;
     
-    GraphicsRenderer(Camera c){
+    public GraphicsRenderer(Camera c){
         this.cam = c;
     }
     

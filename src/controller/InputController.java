@@ -9,7 +9,7 @@ import static java.awt.event.KeyEvent.*;
 import java.util.HashSet;
 import java.util.Set;
 import controller.Action;
-import view.Camera;
+import view.graphics.Camera;
 import controller.ControlScheme;
 
 /**

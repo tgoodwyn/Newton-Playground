@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.graphics.GraphicsRenderer;
 import model.GameLogic;
 import java.awt.Color;
 import java.awt.Graphics;

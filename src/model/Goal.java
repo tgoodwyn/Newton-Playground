@@ -6,7 +6,7 @@
 package model;
 
 import java.awt.Image;
-import view.Texture;
+import view.graphics.Texture;
 
 /**
  *

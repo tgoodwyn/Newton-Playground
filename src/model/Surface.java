@@ -6,7 +6,7 @@
 package model;
 
 import model.Goal;
-import view.Texture;
+import view.graphics.Texture;
 
 /**
  *
