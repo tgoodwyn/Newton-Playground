@@ -5,9 +5,12 @@
  */
 package view;
 
+import cardMgt.CardManager;
+import cards.Card;
 import view.graphics.GraphicsRenderer;
 import model.GameLogic;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -20,19 +23,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
+import static view.Screen.HEIGHT;
+import static view.Screen.WIDTH;
 
 /**
  *
  * @author team 2
  */
-public class GameScreen extends Screen implements KeyListener {
+public class GameScreen extends Card implements KeyListener {
 
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
     private final GameLogic gl;
 
-    public GameScreen() {
-        super();
+    public GameScreen(CardManager cm, String name) {
+        super(cm, name);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
         // light blue        
         this.setBackground(new Color(154, 218, 252));
         // these two methods allow key events

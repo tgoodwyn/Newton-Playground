@@ -4,6 +4,7 @@ import guiActions.NextAction;
 import cards.Third;
 import cards.Second;
 import cards.First;
+import view.GameScreen;
 
 /**
  This is offered as a pattern for using a <code>CardPanel</code> layout as well
@@ -35,7 +36,7 @@ public CardWindow() {
 public void addCardsToHolder() {
     CardManager cm = new CardManager(cardDisplayArea);
     cm.addCard(new First(cm, "first"));
-    cm.addCard(new Second(cm, "second"));
+    cm.addCard(new GameScreen(cm, "second"));
     cm.addCard(new Third(cm, "third"));
 }
 

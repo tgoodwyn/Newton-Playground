@@ -5,6 +5,7 @@
  */
 package view;
 
+import cards.Card;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -18,6 +19,7 @@ public class Screen extends JPanel {
     
     public Screen() {
         // right now all screens will have same size
+        //super("")
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
 }

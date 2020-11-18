@@ -23,8 +23,9 @@ public class Main {
 
         
         Window window = new Window();
-        Screen game = new GameScreen();
-        window.init(game);
+        //COMMENTED OUT THESE 2 LINES BC TRYING TO IMPLEMENT GS AS CARD
+        //Screen game = new GameScreen();
+        //window.init(game);
         
 //        BetterRect tyler = new BetterRect(50,50,50,50);
 //        BetterRect lilla = new BetterRect(60,25,25, 10);
