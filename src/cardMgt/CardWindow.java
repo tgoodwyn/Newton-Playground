@@ -4,6 +4,7 @@ import guiActions.NextAction;
 import cards.Third;
 import cards.Second;
 import cards.First;
+import java.awt.Dimension;
 import view.GameScreen;
 
 /**
@@ -65,7 +66,9 @@ private static void createAndShow() {
         nextButtonMain = new javax.swing.JButton(new NextAction("new next", cardDisplayArea));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(440, 400));
+        setLocation(new java.awt.Point(50, 50));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
+        setResizable(false);
 
         firstButtonMain.setText("first");
         firstButtonMain.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +92,10 @@ private static void createAndShow() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cardDisplayArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(cardDisplayArea, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(firstButtonMain)
                 .addGap(18, 18, 18)
                 .addComponent(secondButtonMain)
@@ -104,7 +107,7 @@ private static void createAndShow() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cardDisplayArea, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(cardDisplayArea, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstButtonMain)
@@ -132,6 +135,10 @@ private static void createAndShow() {
  */
     private void secondButtonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondButtonMainActionPerformed
         cardDisplayArea.showCard("second");
+        System.out.println("yo");  
+        //cardDisplayArea.requestFocus();
+        //this.setPreferredSize(new Dimension(800,500));
+        //this.pack();
     }//GEN-LAST:event_secondButtonMainActionPerformed
 
 /**

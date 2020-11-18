@@ -171,6 +171,7 @@ public void showCard(Component card) {
         getComponent(index).setVisible(false);
     }
     card.setVisible(true);
+    card.requestFocus();
     revalidate();
     repaint();
 }
