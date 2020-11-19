@@ -21,12 +21,13 @@ public class GraphicsRenderer {
     }
     
     public void render(Graphics g){
-        cam.snap();
+        cam.snap(); //
         cam.clip();
         for (DrawableObject d : cam.visibleObjects) {
             d.draw(g);
         }
         
+        // Put the draw code for static screen objects here
         g.drawString("howdy", 50, 50);
 
     }

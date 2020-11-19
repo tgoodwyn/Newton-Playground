@@ -22,13 +22,13 @@ public class Surface {
     Texture bodyTexture;
     Texture goalSurfaceTexture;
     
-    public Surface(int begin, int end, SurfaceBoundary y, Goal g, String path) {
+    public Surface(int begin, int end, SurfaceBoundary y, Goal goal, String path) {
         this.beginX = begin;
         this.endX = end;
         this.boundary = y;
-        this.goal = g;
+        this.goal = goal;
         this.bodyTexture = new Texture(path);
-        this.goalSurfaceTexture = g.getSurfaceTexture();
+        this.goalSurfaceTexture = goal.getSurfaceTexture();
     }
     
     public Texture getBodyTexture() {

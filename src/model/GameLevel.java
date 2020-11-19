@@ -31,10 +31,10 @@ public class GameLevel {
         return camera;
     }
 
-    public GameLevel(Simulation sim, Goal g) {
+    public GameLevel(Simulation sim, Goal goal) {
         this.camera = new Camera(0, 0, 0, 0, sim);
         this.sim = sim;
-        this.levelGoal = g;
+        this.levelGoal = goal;
     }
 
     public void build() {

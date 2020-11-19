@@ -7,12 +7,13 @@ package model;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import view.graphics.objects.SpriteObject;
 
 /**
  *
  * @author team 2
  */
-public class Birdie extends WorldObject  {
+public class Birdie extends SpriteObject  {
     
     public Birdie(int x, int y, int width, int height, Simulation s) {
         super( x, y, width, height, s);
@@ -23,9 +24,9 @@ public class Birdie extends WorldObject  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void draw(Graphics g, int screenX, int screenY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public void draw(Graphics g, int screenX, int screenY) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     
 

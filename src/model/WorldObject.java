@@ -15,8 +15,7 @@ import java.awt.Rectangle;
  *
  * @author team 2
  */
-public abstract class WorldObject extends BetterRect 
-        implements ISimulatable {
+public abstract class WorldObject extends BetterRect implements ISimulatable {
 
     public Simulation sim;
 

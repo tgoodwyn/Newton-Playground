@@ -53,32 +53,44 @@ public class Camera extends WorldObject implements IControllable {
         x = followTarget.x + cameraFollowOffsetX;
         y = followTarget.y + cameraFollowOffsetY;
     }
-Boolean triggered = false;
-Boolean triggered2 = false;
+    
+    /* code for debug purposes
+    Boolean triggered = false;
+    Boolean triggered2 = false;
+    */
+    
     public void snap() {
         viewPlane.x = x;
         viewPlane.y = y;
+
+        /* code for debug purposes
         if (!triggered)
         System.out.println("viewplane at (" + viewPlane.x + (", " + viewPlane.y + ")"));
-
+         */
     }
 
     public void tick() {
+        // follow code should go here
+        
+        
+        /* code from former control scheme
         x += deltaX;
         y += deltaY;
+        */
+        
         visibleObjects.clear();
     }
 
     public void clip() {
-        int c =0;
+        int c = 0;
         for (DrawableObject i : sim.getAllDrawable()) {
-            
+
             if (viewPlane.intersects(i)) {
+                int screenX = i.x - (x);
+                int screenY = -(i.y - (y));
+
+                /* code for debug purposes
                 triggered = true;
-                int screenX = i.x - (x );
-                int screenY = -(i.y - (y ));
-                
-                /*
                 if (!triggered2){
                 System.out.println("object cords at (" + i.x + (", " + i.y + ")"));
                 System.out.println("supposed screen cords at (" + screenX + (", " + screenY + ")"));
