@@ -5,99 +5,67 @@
  */
 package model;
 
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.lang.System.Logger.Level;
-import java.util.ArrayList;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import view.graphics.Camera;
-import view.graphics.Texture;
+import model.GameWorld;
+import controller.InputController;
+import controller.InputController;
 
 /**
  *
  * @author team 2
  */
-public class GameLevel {
+public class GameLevel implements ISimulatable {
 
-    private final Camera camera;
+    private final InputController ic;
+
+    // the GameLevel owns the Simulation and the GameWorld
+    // the GameWorld owns the physics objects 
+    // that are controlled by the simulation
+    
+    private final GameWorld world;
     private final Simulation sim;
-    private Surface levelSurface;
-    private final Goal levelGoal;
+    
+    public enum LevelType {
+        SAND, STONE, ICE, GRASS
+    }
+    
+    // OPTIONAL: in addition to passing the starting coord
+    // we could also pass in the dimensions of the goal area
+    // right now they are defaulted to 500 x 300
+    public GameLevel(LevelType levelType, int goalXCoord) {
+        // the GameLevel constructor creates the simulation, the goal, 
+        // and the Birdie. It then passes these, along with the specific 
+        // level selected by the user to build  the GameWorld
+        sim = new Simulation();
+        Goal goal = new Goal(goalXCoord, new SurfaceBoundary(0),
+                500, 300, "/block_brick.png");
+        
+        // the GameWorld contains the "physics" of the game
+        world = new GameWorld(sim, goal, levelType);
+        world.build();
 
-    public Camera getCamera() {
-        return camera;
+        // might be removing InputController stuff
+        ic = new InputController(world.getCamera());
+        
+   
     }
 
-    public GameLevel(Simulation sim, Goal goal) {
-        this.camera = new Camera(0, 0, 0, 0, sim);
-        this.sim = sim;
-        this.levelGoal = goal;
+    public GameWorld getWorld() {
+        return world;
     }
 
-    public void build() {
-        addStaticObjects();
-        addDynamicObjects();
-        sim.separateDrawables();
+    @Override
+    public void tick() {
+        sim.simulate();
     }
 
-    public void addStaticObjects() {
-        createSurface();
-        addSurfaceToSimulation();
+    @Override
+    public Simulation getSimulation() {
+        return sim;
     }
 
-    public void addDynamicObjects() {
-        // add any dynamic objects
-        sim.addDynamic(this.camera);
-    }
-
-    public void createSurface() {
-        // initialize surface 
-        levelSurface = new Surface(-500, 10000,
-                levelGoal.getBoundary(), levelGoal, "/stoneWall.png");
-    }
-
-    // add data for the surface of the level to the simulation
-    private void addSurfaceToSimulation() {
-        // variables created here to delineate the start and end points
-        // of the while loops that are the bulk of this function
-        int step = Surface.BLOCKSIZE;
-        int xStart = levelSurface.beginX;
-        int xEnd = levelSurface.endX;
-        int goalStart = levelGoal.x;
-        int goalEnd = levelGoal.x + levelGoal.width;
-        int yTop = levelSurface.getBoundary().getYCoord();
-        int yBottom = -600;
-        // different texture will be assigned based on location
-        // of the surface block
-        Texture curTex;
-
-        // nested while loops that fill in the surface model,
-        // separating goal blocks from non-goal blocks
-        int x = xStart;
-        while (x < xEnd) {
-            int y = yTop;
-            while (y > yBottom) {
-
-                // if x is between the start and end of goal
-                if (x >= goalStart && x < goalEnd) {
-                    curTex = levelGoal.getSurfaceTexture();
-                } // otherwise use regular texture
-                else {
-                    curTex = levelSurface.getBodyTexture();
-                }
-//                System.out.println("block instantiated at (" + x + (", " + y + ")"));
-
-                SurfaceBlock block = new SurfaceBlock(
-                        x, y, step, step, curTex, sim);
-                // add the block to the simulation
-                sim.addStatic(block);
-                y -= step;
-            }
-            x += step;
-        }
+    // might be removing InputController stuff
+    public InputController getInputController() {
+        return ic;
     }
 
 }

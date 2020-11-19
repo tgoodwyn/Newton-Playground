@@ -16,6 +16,7 @@ import java.awt.Point;
 import static java.awt.event.KeyEvent.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import model.Birdie;
 import model.Simulation;
 import model.WorldObject;
 import view.ui.Screen;
@@ -38,11 +39,11 @@ public class Camera extends WorldObject implements IControllable {
     private int cameraFollowOffsetX = -50;
     private int cameraFollowOffsetY = 100;
 
-    public Camera(int x, int y, int w, int h, Simulation s) {
+    public Camera(int x, int y, int w, int h, Simulation s, Birdie birdie) {
         super(x, y, w, h, s);
         this.viewPlane = new BetterRect(x, y, Screen.WIDTH, Screen.HEIGHT);
         visibleObjects = new ArrayList<DrawableObject>();
-        followTarget = new ShapeObject(50, 50, 100, 50, s);
+        followTarget = birdie;
         cameraWorldInitialX = followTarget.x + cameraFollowOffsetX;
         cameraWorldInitialY = followTarget.x + cameraFollowOffsetY;
         follow();

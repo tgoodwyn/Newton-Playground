@@ -8,7 +8,7 @@ package view.ui;
 import cardMgt.CardManager;
 import cards.Card;
 import view.graphics.GraphicsRenderer;
-import model.GameLogic;
+import model.GameLevel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -34,7 +34,7 @@ public class GameScreen extends Card implements KeyListener {
 
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
-    private final GameLogic gl;
+    private final GameLevel level;
 
     public GameScreen(CardManager cm, String name) {
         super(cm, name);
@@ -45,11 +45,16 @@ public class GameScreen extends Card implements KeyListener {
         // these two methods allow key events
         addKeyListener(this);
         setFocusable(true);
-
-        // create the model for the game
-        gl = new GameLogic();
+        
+        // TODO: code for selecting current level goes here
+        // user selection will be from an enum GameLevel.Levels
+        // defaulting here to STONE
+        // also passing in the X position where the goal begins
+        int goalXStart = 100; // default
+        level = new GameLevel(GameLevel.LevelType.STONE, goalXStart);
+        
         // create a renderer and attach the game logic, via the level camera
-        renderer = new GraphicsRenderer(gl.getLevel().getCamera());
+        renderer = new GraphicsRenderer(level.getWorld().getCamera());
         // starts the game loop
         stopwatch = new Timer(17, gameTimer);
         stopwatch.start();
@@ -58,7 +63,7 @@ public class GameScreen extends Card implements KeyListener {
 
     ActionListener gameTimer = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            gl.tick(); // physics update
+            level.tick(); // physics update
             repaint(); // graphics update
 
         }
@@ -72,15 +77,21 @@ public class GameScreen extends Card implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        gl.getInputController().keyPressed(e.getKeyCode());
+        level.getInputController().keyPressed(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        gl.getInputController().keyReleased(e.getKeyCode());
+        level.getInputController().keyReleased(e.getKeyCode());
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
     }
 }
+
+        // determine which parameters 
+        // get passed into method for creating new GameLevel
+        // parameters: goalXStart - the x coordinate that the goal begins
+        //             ball - an object of type Birdie that has the appropriate
+        //                    mass, texture, and size for the level
