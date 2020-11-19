@@ -23,7 +23,8 @@ public class GameLevel implements ISimulatable {
     
     private final GameWorld world;
     private final Simulation sim;
-    
+    private boolean winStatus = false;
+    private Goal goal;
     public enum LevelType {
         SAND, STONE, ICE, GRASS
     }
@@ -36,26 +37,32 @@ public class GameLevel implements ISimulatable {
         // and the Birdie. It then passes these, along with the specific 
         // level selected by the user to build  the GameWorld
         sim = new Simulation();
-        Goal goal = new Goal(goalXCoord, new SurfaceBoundary(0),
-                500, 300, "/block_brick.png");
+        goal = new Goal(goalXCoord, new SurfaceBoundary(0),
+                200, 300, "/checker_tile_70.png");
         
         // the GameWorld contains the "physics" of the game
         world = new GameWorld(sim, goal, levelType);
         world.build();
 
         // might be removing InputController stuff
-        ic = new InputController(world.getCamera());
+        ic = new InputController(world.getBirdie());
         
    
     }
+    
 
-    public GameWorld getWorld() {
-        return world;
-    }
 
     @Override
     public void tick() {
         sim.simulate();
+        int goalStart = goal.getX();
+        int goalEnd = goal.getX()+goal.getWidth();
+        int birdiePos = world.getBirdie().getX();
+        if (birdiePos >= goalStart && birdiePos <= goalEnd) {
+            winStatus = true;
+        } else {
+            winStatus = false;
+        }
     }
 
     @Override
@@ -67,5 +74,10 @@ public class GameLevel implements ISimulatable {
     public InputController getInputController() {
         return ic;
     }
-
+    public boolean getWinStatus() {
+        return winStatus;
+    }
+    public GameWorld getWorld() {
+        return world;
+    }
 }

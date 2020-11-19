@@ -25,15 +25,13 @@ import view.ui.Screen;
  *
  * @author team 2
  */
-public class Camera extends WorldObject implements IControllable {
+public class Camera extends WorldObject {
 
     BetterRect viewPlane;
     private WorldObject followTarget;
     public ArrayList<DrawableObject> visibleObjects;
-    private int deltaX;
-    private int deltaY;
 
-    private int speed = 2;
+
     int cameraWorldInitialX;
     int cameraWorldInitialY;
     private int cameraFollowOffsetX = -50;
@@ -72,13 +70,7 @@ public class Camera extends WorldObject implements IControllable {
 
     public void tick() {
         // follow code should go here
-        
-        
-        /* code from former control scheme
-        x += deltaX;
-        y += deltaY;
-        */
-        
+        follow();
         visibleObjects.clear();
     }
 
@@ -104,38 +96,5 @@ public class Camera extends WorldObject implements IControllable {
         }
     }
 
-    @Override
-    public void update(int keycode, Action.ActionType a) {
-        if (a == PRESSED) {
-            switch (keycode) {
-                case (VK_UP):
-                    deltaY = 1 * speed;
-                    break;
-                case (VK_DOWN):
-                    deltaY = -1 * speed;
-                    break;
-                case (VK_RIGHT):
-                    deltaX = 1 * speed;
-                    break;
-                case (VK_LEFT):
-                    deltaX = -1 * speed;
-                    break;
-            }
-        } else if (a == RELEASED) {
-            switch (keycode) {
-                case (VK_UP):
-                    deltaY = 0;
-                    break;
-                case (VK_DOWN):
-                    deltaY = 0;
-                    break;
-                case (VK_RIGHT):
-                    deltaX = 0;
-                    break;
-                case (VK_LEFT):
-                    deltaX = 0;
-                    break;
-            }
-        }
-    }
+
 }

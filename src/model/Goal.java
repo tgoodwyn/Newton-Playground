@@ -14,10 +14,12 @@ import view.graphics.Texture;
  */
 class Goal {
 
-    int x;
+    private int x;
     SurfaceBoundary divideLine;
-    int width;
-    int height;
+    private int width;
+    private int height;
+
+
 
     Texture surfaceTexture;
     Texture objectTexture;
@@ -38,4 +40,15 @@ class Goal {
         return divideLine;
     }
 
+        public int getX() {
+        return x;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

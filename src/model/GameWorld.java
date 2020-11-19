@@ -25,6 +25,7 @@ public class GameWorld {
 
     private final Camera camera;
     private final Birdie birdie;
+
     private final Simulation sim;
     private Surface levelSurface;
     private final Goal levelGoal;
@@ -38,19 +39,19 @@ public class GameWorld {
         this.levelType = levelType;
         this.sim = sim;
         this.levelGoal = goal;
-        
+
         // code for creating level-specific birdie goes here
         // might be moved into its own function at some point
         // TODO: fill out rest of the switch statement
-        switch(levelType) {
+        switch (levelType) {
             case STONE:
-                                        // its x,y,w,h
+                // its x,y,w,h
                 this.birdie = new Birdie(0, 50, 50, 50, "/cannon_ball.png",
-                     // its mass
+                        // its mass
                         50, sim);
                 break;
             default:
-                this.birdie = new Birdie(0, 50, 50, 50, "/cannon_ball.png", 
+                this.birdie = new Birdie(0, 50, 50, 50, "/cannon_ball.png",
                         50, sim);
                 break;
         }
@@ -59,12 +60,11 @@ public class GameWorld {
     }
 
 
-/* not used for now    
+    /* not used for now    
     private void createBirdieAndCamera(Simulation sim) {
 
     }
-*/   
-
+     */
     public void build() {
         addStaticObjects();
         addDynamicObjects();
@@ -91,7 +91,7 @@ public class GameWorld {
         // TODO: add other surface types
         switch (levelType) {
             case STONE:
-                surfaceImagePath = "/stoneWall.png";
+                surfaceImagePath = "/block_brick.png";
                 break;
         }
 
@@ -106,8 +106,8 @@ public class GameWorld {
         int step = Surface.BLOCKSIZE;
         int xStart = levelSurface.beginX;
         int xEnd = levelSurface.endX;
-        int goalStart = levelGoal.x;
-        int goalEnd = levelGoal.x + levelGoal.width;
+        int goalStart = levelGoal.getX();
+        int goalEnd = levelGoal.getX() + levelGoal.getWidth();
         int yTop = levelSurface.getBoundary().getYCoord();
         int yBottom = -600;
         // different texture will be assigned based on location
@@ -138,6 +138,10 @@ public class GameWorld {
             }
             x += step;
         }
+    }
+
+    public Birdie getBirdie() {
+        return birdie;
     }
 
 }
