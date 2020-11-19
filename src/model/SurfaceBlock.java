@@ -5,7 +5,7 @@
  */
 package model;
 
-import view.graphics.SpriteObject;
+import view.graphics.objects.SpriteObject;
 import java.awt.Graphics;
 import java.awt.Image;
 import view.graphics.Texture;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.ui;
 
 import cardMgt.CardManager;
 import cards.Card;
@@ -23,8 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
-import static view.Screen.HEIGHT;
-import static view.Screen.WIDTH;
+import static view.ui.Screen.HEIGHT;
+import static view.ui.Screen.WIDTH;
 
 /**
  *

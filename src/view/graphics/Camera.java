@@ -7,9 +7,9 @@ package view.graphics;
 
 import utilities.BetterRect;
 import controller.IControllable;
-import view.Screen;
-import view.graphics.DrawableObject;
-import view.graphics.ShapeObject;
+import view.ui.Screen;
+import view.graphics.objects.DrawableObject;
+import view.graphics.objects.ShapeObject;
 import controller.Action;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import model.Simulation;
 import model.WorldObject;
-import view.Screen;
+import view.ui.Screen;
 
 /**
  *
@@ -67,25 +67,23 @@ Boolean triggered2 = false;
         x += deltaX;
         y += deltaY;
         visibleObjects.clear();
-//        System.out.println("camera pos is ("+x+(", "+y+")"));
-        //follow();
     }
 
     public void clip() {
         int c =0;
         for (DrawableObject i : sim.getAllDrawable()) {
-//            System.out.println("iterate");
             
             if (viewPlane.intersects(i)) {
-//                System.out.println("camera x when clipped is " + x);
                 triggered = true;
                 int screenX = i.x - (x );
                 int screenY = -(i.y - (y ));
+                
+                /*
                 if (!triggered2){
                 System.out.println("object cords at (" + i.x + (", " + i.y + ")"));
                 System.out.println("supposed screen cords at (" + screenX + (", " + screenY + ")"));
                 triggered2 = true;
-                }
+                }*/
                 i.setScreenX(screenX);
                 i.setScreenY(screenY);
                 visibleObjects.add(i);

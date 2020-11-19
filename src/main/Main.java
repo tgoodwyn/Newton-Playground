@@ -5,9 +5,9 @@
  */
 package main;
 
-import view.GameScreen;
-import view.Window;
-import view.Screen;
+import view.ui.GameScreen;
+import view.ui.Window;
+import view.ui.Screen;
 
 /**
  *

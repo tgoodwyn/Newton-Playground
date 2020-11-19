@@ -5,6 +5,7 @@
  */
 package view.graphics;
 
+import view.graphics.objects.DrawableObject;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class GraphicsRenderer {
         for (DrawableObject d : cam.visibleObjects) {
             d.draw(g);
         }
+        
+        g.drawString("howdy", 50, 50);
 
     }
     

@@ -5,7 +5,7 @@
  */
 package model;
 
-import view.graphics.DrawableObject;
+import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
 
 /**

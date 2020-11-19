@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.graphics;
+package view.graphics.objects;
 
 import java.awt.Graphics;
 import model.Simulation;
@@ -25,11 +25,11 @@ public abstract class DrawableObject extends WorldObject {
 
     public abstract void draw(Graphics g);
 
-    void setScreenX(int adjustedX) {
+    public void setScreenX(int adjustedX) {
         screenX = adjustedX;
     }
 
-    void setScreenY(int adjustedY) {
+    public void setScreenY(int adjustedY) {
         screenY = adjustedY;
     }
 }
