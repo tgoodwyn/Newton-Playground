@@ -36,9 +36,9 @@ public class GameLevel implements ISimulatable {
         // the GameLevel constructor creates the simulation, the goal, 
         // and the Birdie. It then passes these, along with the specific 
         // level selected by the user to build  the GameWorld
-        sim = new Simulation();
+        sim = new Simulation(levelType);
         goal = new Goal(goalXCoord, new SurfaceBoundary(0),
-                200, 300, "/checker_tile_70.png");
+                200, 300, "/Win Tile (1).png");
         
         // the GameWorld contains the "physics" of the game
         world = new GameWorld(sim, goal, levelType);

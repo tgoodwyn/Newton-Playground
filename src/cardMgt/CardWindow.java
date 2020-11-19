@@ -37,7 +37,7 @@ public CardWindow() {
 public void addCardsToHolder() {
     CardManager cm = new CardManager(cardDisplayArea);
     cm.addCard(new First(cm, "first"));
-    cm.addCard(new GameScreen(cm, "second"));
+    cm.addCard(new GameScreen(cm, "game"));
     cm.addCard(new Third(cm, "third"));
 }
 
@@ -134,7 +134,7 @@ private static void createAndShow() {
  @param evt as an <code>ActionEvent</code>
  */
     private void secondButtonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondButtonMainActionPerformed
-        cardDisplayArea.showCard("second");
+        cardDisplayArea.showCard("game");
         System.out.println("yo");  
         //cardDisplayArea.requestFocus();
         //this.setPreferredSize(new Dimension(800,500));

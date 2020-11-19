@@ -35,7 +35,7 @@ public class Camera extends WorldObject {
     int cameraWorldInitialX;
     int cameraWorldInitialY;
     private int cameraFollowOffsetX = -50;
-    private int cameraFollowOffsetY = 100;
+    private int cameraFollowOffsetY = 200;
 
     public Camera(int x, int y, int w, int h, Simulation s, Birdie birdie) {
         super(x, y, w, h, s);

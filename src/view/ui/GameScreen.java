@@ -35,7 +35,7 @@ public class GameScreen extends Card implements KeyListener {
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
     private final GameLevel level;
-
+    
     public GameScreen(CardManager cm, String name) {
         super(cm, name);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
