@@ -61,7 +61,7 @@ public class Birdie extends SpriteObject implements IControllable {
             velocity += acceleration;
             velocity *= frictionCoefficient;
             x += velocity;
-            center = (x + width) / 2;
+            center = x + (width / 2);
             if (Math.abs(velocity) < 0.05) {
                 movingStatus = false;
 

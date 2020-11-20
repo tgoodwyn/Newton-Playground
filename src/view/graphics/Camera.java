@@ -46,7 +46,7 @@ public class Camera extends WorldObject {
         followTarget = birdie;
         ballX = followTarget.getCenter();
 
-        offset = (ballX - x) + 80;
+        offset = 130;
         poleLeft = x + offset;
         poleRight = Screen.WIDTH - offset;
     }
@@ -54,21 +54,12 @@ public class Camera extends WorldObject {
     public void tick() {
         dir = sim.getBirdieDirection();
         ballX = followTarget.getCenter();
-        //boolean moving = followTarget.isMoving();
-
-        //if (!following && moving) {
-        //if (dir == 1) {
-        if (ballX > poleRight) {
+        if (ballX > poleRight && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
             following = true;
-        }
-        //} else if (dir == -1) {
-        if (ballX < poleLeft) {
+        } else if (ballX < poleLeft  && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
             following = true;
-
-            //}
-            //}
         }
         if (following) {
             follow();
@@ -79,18 +70,28 @@ public class Camera extends WorldObject {
     public void follow() {
         //int center = followTarget.getCenter();
         if (!followTarget.isMoving()) {
-            int newPoleLeft = (ballX - offset);
-            int newPoleRight = (ballX + offset - Screen.WIDTH);
-            boolean ballLeft = (x > newPoleLeft);
-            boolean ballRight = (x < newPoleRight);
-            if (dir == 1 && ballLeft) {
-                following = false;
-                terminalVelocity = 0;
+            if (dir == 1) {
+                //ball needs to be greater than camX+offset
+                // ballX > camX + offset
+                // 140 > 0 + 20
+                if (x < ballX - offset) {
+                    following = false;
+                    terminalVelocity = 0;
+                    poleRight = x + Screen.WIDTH - offset;
+                    poleLeft = ballX;
+                };
             }
-            if (dir == -1 && ballRight) {
-                following = false;
-                terminalVelocity = 0;
+            if (dir == -1) {
+                //ball needs to be less than camX+ScreenWidth - offset
+                if (x > ballX + offset - Screen.WIDTH) {
+                    following = false;
+                    terminalVelocity = 0;
+                    poleLeft = x + offset;
+                    poleRight = ballX;
+                }
+
             }
+
         }
         if (following) {
             int dampAbs = 1;
