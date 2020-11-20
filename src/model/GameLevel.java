@@ -36,7 +36,7 @@ public class GameLevel implements ISimulatable {
         // the GameLevel constructor creates the simulation, the goal, 
         // and the Birdie. It then passes these, along with the specific 
         // level selected by the user to build  the GameWorld
-        sim = new Simulation(levelType);
+        sim = new Simulation(levelType, goalXCoord);
         goal = new Goal(goalXCoord, new SurfaceBoundary(0),
                 200, 300, "/Win Tile (1).png");
         
@@ -55,6 +55,8 @@ public class GameLevel implements ISimulatable {
     @Override
     public void tick() {
         sim.simulate();
+        
+        
         int goalStart = goal.getX();
         int goalEnd = goal.getX()+goal.getWidth();
         int birdiePos = world.getBirdie().getX();

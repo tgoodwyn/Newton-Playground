@@ -55,7 +55,7 @@ public class GameWorld {
                         50, sim);
                 break;
         }
-        this.camera = new Camera(0, 0, 0, 0, sim, this.birdie);
+        this.camera = new Camera(-50, 200, 0, 0, sim, this.birdie);
 
     }
 
@@ -79,10 +79,9 @@ public class GameWorld {
     public void addDynamicObjects() {
         // add any dynamic objects
         sim.addDynamic(this.camera);
+        sim.setCamera(camera);
         sim.addDynamic(this.birdie);
-        // TODO: the code for creating the level-specific Birdie goes here
-        // can use a switch statement like in the sruface creation below
-        // for now, we're just using a plain rectangle of type ShapeObject
+        sim.setBirdie(birdie);
     }
 
     public void createSurface() {

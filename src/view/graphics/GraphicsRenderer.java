@@ -23,8 +23,9 @@ public class GraphicsRenderer {
         this.cam = c;
         this.level = level;
     }
-
+    
     public void render(Graphics g) {
+        
         cam.snap(); //
         cam.clip();
         for (DrawableObject d : cam.visibleObjects) {

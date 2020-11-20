@@ -20,6 +20,7 @@ import static java.awt.event.KeyEvent.VK_UP;
 import view.graphics.Texture;
 import view.graphics.objects.SpriteObject;
 import java.lang.Math;
+import view.graphics.Camera;
 
 /**
  *
@@ -35,6 +36,8 @@ public class Birdie extends SpriteObject implements IControllable {
     private boolean movingStatus = false;
     private double frictionCoefficient;
     private int dampener;
+    private Camera camera;
+    private int center;
 
     public Birdie(int x, int y, int width, int height, String imagePath, int mass,
             Simulation s) {
@@ -42,29 +45,38 @@ public class Birdie extends SpriteObject implements IControllable {
         this.mass = mass;
         frictionCoefficient = sim.getLevelFriction();
         sim.setBirdie(this);
+        camera = sim.getCamera();
 
     }
 
     @Override
     public void tick() {
-
         if (movingStatus == true) {
-            if (dampener < 10) {
-                velocity += acceleration * frictionCoefficient;
-
-            } else {
-                velocity += acceleration;
-            }
-            x += velocity;
-            dampener++;
-        }
-        if (dampener > 30) {
-            velocity *= frictionCoefficient;
+//            if (dampener < 10) {
+//                velocity += acceleration * frictionCoefficient;
+//
+//            } else {
+//                velocity += acceleration;
+//            }
+//
+//            if (dampener > 30) {
+//                velocity *= frictionCoefficient;
+//                acceleration *= frictionCoefficient;
+//            }
             acceleration *= frictionCoefficient;
-        }
-        if (Math.abs(velocity) < 0.05) {
-            movingStatus = false;
-            dampener = 0;
+            velocity += acceleration;
+            velocity *= frictionCoefficient;
+            x += velocity;
+            center = (x + width) / 2;
+//            dampener++;
+            if (Math.abs(velocity) < 0.05) {
+                movingStatus = false;
+//                dampener = 0;
+                int dir = sim.getBirdieDirection();
+                int newTrigger = camera.getCameraOffset() * dir + center;
+                camera.setFollowTrigger(newTrigger);
+            }
+
         }
 
     }
@@ -72,7 +84,7 @@ public class Birdie extends SpriteObject implements IControllable {
     @Override
     public void update(int keycode, Action.ActionType a) {
         if (a == PRESSED) {
-            if (keycode == VK_UP && movingStatus == false) {
+            if (keycode == VK_UP && sim.isInputAllowed() == true) {
                 movingStatus = true;
                 acceleration = force / mass;
                 velocity = 0;
@@ -81,7 +93,7 @@ public class Birdie extends SpriteObject implements IControllable {
 
             }
 
-            if (keycode == VK_DOWN && movingStatus == false) {
+            if (keycode == VK_DOWN && sim.isInputAllowed() == true) {
                 movingStatus = true;
                 acceleration = -(force / mass);
                 velocity = 0;
@@ -92,34 +104,12 @@ public class Birdie extends SpriteObject implements IControllable {
         }
     }
 
-}
+    public boolean isMoving() {
+        return movingStatus;
+    }
 
-//switch (keycode) {
-//                case (VK_UP):
-//                    deltaY = 1 * speed;
-//                    break;
-//                case (VK_DOWN):
-//                    deltaY = -1 * speed;
-//                    break;
-//                case (VK_RIGHT):
-//                    velocityX = 1 * speed;
-//                    break;
-//                case (VK_LEFT):
-//                    velocityX = -1 * speed;
-//                    break;
-//            }
-//        } else if (a == RELEASED) {
-//            switch (keycode) {
-//                case (VK_UP):
-//                    deltaY = 0;
-//                    break;
-//                case (VK_DOWN):
-//                    deltaY = 0;
-//                    break;
-//                case (VK_RIGHT):
-//                    velocityX = 0;
-//                    break;
-//                case (VK_LEFT):
-//                    velocityX = 0;
-//                    break;
-//            }
+    public double getVelocity() {
+        return velocity;
+    }
+
+}
