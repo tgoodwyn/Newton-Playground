@@ -33,7 +33,8 @@ public class Camera extends WorldObject {
 
     private int cameraFollowOffsetX = -50;
     private int cameraFollowOffsetY = 400;
-
+    
+    public static final int triggerOffset = 200;
     private int followTrigger;
     private boolean following;
 
@@ -42,25 +43,20 @@ public class Camera extends WorldObject {
         this.viewPlane = new BetterRect(x, y, Screen.WIDTH, Screen.HEIGHT);
         visibleObjects = new ArrayList<DrawableObject>();
         followTarget = birdie;
-//        x = -50;
-//        y = 800;
     }
 
     public void tick() {
-        // follow code should go here
         int dir = sim.getBirdieDirection();
-        System.out.println("dir = " + dir);
+        //System.out.println("dir = " + dir);
 
         boolean moving = followTarget.isMoving();
         int ballX = followTarget.x;
         if (moving) {
             if (dir == 1) {
-
                 if (ballX > followTrigger && x < ballX) {
                     follow();
                 }
             } else if (dir == -1) {
-
                 if (ballX < followTrigger && x > ballX) {
                     follow();
                 }
@@ -72,17 +68,20 @@ public class Camera extends WorldObject {
 
     public void follow() {
         x += followTarget.getVelocity();
-        System.out.println("should not be called");
     }
 
     public void snap() {
         viewPlane.x = x;
         viewPlane.y = y;
-        System.out.println("camera x when snapped " + x);
 
     }
 
+    /* generic debug code 
     boolean done = false;
+                if (!done) {
+                done = true;
+                }
+    */
 
     public void clip() {
         int c = 0;
@@ -93,11 +92,6 @@ public class Camera extends WorldObject {
                 i.setScreenX(screenX);
                 i.setScreenY(screenY);
                 visibleObjects.add(i);
-                if (!done) {
-                    System.out.println("top left box world coord x: " + i.x);
-                    System.out.println("top left box world coord y: " + i.y);
-                    done = true;
-                }
             }
         }
     }

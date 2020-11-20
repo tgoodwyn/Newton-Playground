@@ -32,7 +32,8 @@ public class Birdie extends SpriteObject implements IControllable {
     private int mass;
     private double velocity;
     private double acceleration;
-    private double force = 100;
+    private double force = 600;
+    private Simulation sim;
     private boolean movingStatus = false;
     private double frictionCoefficient;
     private int dampener;
@@ -43,37 +44,27 @@ public class Birdie extends SpriteObject implements IControllable {
             Simulation s) {
         super(x, y, width, height, new Texture(imagePath), s);
         this.mass = mass;
-        frictionCoefficient = sim.getLevelFriction();
-        sim.setBirdie(this);
-        camera = sim.getCamera();
-
+        frictionCoefficient = s.getLevelFriction();
+        s.setBirdie(this);
+        sim = s;
     }
 
     @Override
     public void tick() {
+        camera = sim.getCamera();
+
         if (movingStatus == true) {
-//            if (dampener < 10) {
-//                velocity += acceleration * frictionCoefficient;
-//
-//            } else {
-//                velocity += acceleration;
-//            }
-//
-//            if (dampener > 30) {
-//                velocity *= frictionCoefficient;
-//                acceleration *= frictionCoefficient;
-//            }
             acceleration *= frictionCoefficient;
             velocity += acceleration;
             velocity *= frictionCoefficient;
             x += velocity;
             center = (x + width) / 2;
-//            dampener++;
             if (Math.abs(velocity) < 0.05) {
                 movingStatus = false;
-//                dampener = 0;
                 int dir = sim.getBirdieDirection();
-                int newTrigger = camera.getCameraOffset() * dir + center;
+                int newTrigger = camera.triggerOffset * dir + center;
+                System.out.println("current ball pos = "+x);
+                System.out.println("new trigger = "+newTrigger);
                 camera.setFollowTrigger(newTrigger);
             }
 
@@ -88,8 +79,6 @@ public class Birdie extends SpriteObject implements IControllable {
                 movingStatus = true;
                 acceleration = force / mass;
                 velocity = 0;
-                System.out.println("up pressed");
-                System.out.println("dampener = " + dampener);
 
             }
 
@@ -97,8 +86,6 @@ public class Birdie extends SpriteObject implements IControllable {
                 movingStatus = true;
                 acceleration = -(force / mass);
                 velocity = 0;
-                System.out.println("down pressed");
-                System.out.println("dampener = " + dampener);
             }
 
         }
