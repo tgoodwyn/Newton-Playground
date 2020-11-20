@@ -75,46 +75,53 @@ public class Camera extends WorldObject {
         //int center = followTarget.getCenter();
         if (!followTarget.isMoving()) {
             if (dir == 1) {
-                // this code is purely a guard rail
-                if (x > ballX) {
-                    x = ballX - offset;
-                    following = false;
-                    terminalVelocity = 0;
-                    poleRight = x + Screen.WIDTH - offset;
-                    poleLeft = ballX;
+                if (memdir == 1) {
+                    // this code is purely a guard rail
+                    if (x > ballX - offset) {
+                        //x = ballX - offset;
+                        following = false;
+                        terminalVelocity = 0;
+                        poleRight = x + Screen.WIDTH - offset;
+                        poleLeft = ballX;
+                    }
+                } else if (memdir == -1) {
+                    //ball needs to be greater than camX+offset
+                    // ballX > camX + offset
+                    // 140 > 0 + 20
+                    if (x < ballX - offset) {
+                        following = false;
+                        terminalVelocity = 0;
+                        poleRight = x + Screen.WIDTH - offset;
+                        poleLeft = ballX;
+                    }
                 }
-                //ball needs to be greater than camX+offset
-                // ballX > camX + offset
-                // 140 > 0 + 20
-                if (x < ballX - offset) {
-                    following = false;
-                    terminalVelocity = 0;
-                    poleRight = x + Screen.WIDTH - offset;
-                    poleLeft = ballX;
-                };
             }
             if (dir == -1) {
-                // same guard rail
-                if (x < ballX) {
-                    x = ballX + offset - Screen.WIDTH;
-                    following = false;
-                    terminalVelocity = 0;
-                    poleRight = ballX;
-                    poleLeft = x + offset;
-                }
-                //ball needs to be less than camX+ScreenWidth - offset
-                if (x > ballX + offset - Screen.WIDTH) {
-                    following = false;
-                    terminalVelocity = 0;
-                    poleLeft = x + offset;
-                    poleRight = ballX;
+                if (memdir == -1) {
+                    // same guard rail
+                    if (x < ballX + offset - Screen.WIDTH) {
+                        //x = ballX + offset - Screen.WIDTH;
+                        following = false;
+                        terminalVelocity = 0;
+                        poleRight = ballX;
+                        poleLeft = x + offset;
+                    }
+                } else if (memdir == 1) {
+
+                    //ball needs to be less than camX+ScreenWidth - offset
+                    if (x > ballX + offset - Screen.WIDTH) {
+                        following = false;
+                        terminalVelocity = 0;
+                        poleLeft = x + offset;
+                        poleRight = ballX;
+                    }
                 }
 
             }
 
         }
         if (following) {
-            int dampAbs = 1;
+            int dampAbs = 3;
             int dampAmt = (terminalVelocity > 0) ? dampAbs : -dampAbs;
             if (followTarget.isMoving()) {
                 x += terminalVelocity;
