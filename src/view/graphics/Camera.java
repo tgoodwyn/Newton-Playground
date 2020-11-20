@@ -34,6 +34,7 @@ public class Camera extends WorldObject {
     private int dir;
     private int ballX;
     private boolean following = false;
+    private int memdir = 0;
     private int offset;
     private double terminalVelocity;
     private int poleLeft;
@@ -56,9 +57,11 @@ public class Camera extends WorldObject {
         ballX = followTarget.getCenter();
         if (ballX > poleRight && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
+            memdir = 1;
             following = true;
         } else if (ballX < poleLeft && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
+            memdir = -1;
             following = true;
         }
         if (following) {
