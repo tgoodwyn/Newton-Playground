@@ -64,10 +64,10 @@ private static void createAndShow() {
         firstButtonMain = new javax.swing.JButton();
         secondButtonMain = new javax.swing.JButton();
         nextButtonMain = new javax.swing.JButton(new NextAction("new next", cardDisplayArea));
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(50, 50));
-        setPreferredSize(new java.awt.Dimension(1000, 550));
         setResizable(false);
 
         firstButtonMain.setText("first");
@@ -86,6 +86,8 @@ private static void createAndShow() {
 
         nextButtonMain.setText("Next");
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,6 +98,8 @@ private static void createAndShow() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
                 .addComponent(firstButtonMain)
                 .addGap(18, 18, 18)
                 .addComponent(secondButtonMain)
@@ -112,7 +116,8 @@ private static void createAndShow() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstButtonMain)
                     .addComponent(secondButtonMain)
-                    .addComponent(nextButtonMain))
+                    .addComponent(nextButtonMain)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -188,6 +193,7 @@ public static void main(String args[]) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cardMgt.CardPanel cardDisplayArea;
     private javax.swing.JButton firstButtonMain;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton nextButtonMain;
     private javax.swing.JButton secondButtonMain;
     // End of variables declaration//GEN-END:variables

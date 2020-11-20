@@ -33,7 +33,7 @@ public class Birdie extends SpriteObject implements IControllable {
     private int mass;
     private double velocity;
     private double acceleration;
-    private double force = 600;
+    private double force = 900;
     private Simulation sim;
     private boolean movingStatus = false;
     private double frictionCoefficient;

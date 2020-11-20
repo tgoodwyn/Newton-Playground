@@ -34,6 +34,8 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jTextField1" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Component id="firstButtonMain" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="secondButtonMain" min="-2" max="-2" attributes="0"/>
@@ -53,6 +55,7 @@
                   <Component id="firstButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="secondButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nextButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -85,6 +88,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(new NextAction(&quot;new next&quot;, cardDisplayArea))"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
