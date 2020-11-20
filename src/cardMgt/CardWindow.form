@@ -34,7 +34,11 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jTextField1" min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="LaunchButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ForceInput" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Component id="firstButtonMain" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -55,7 +59,9 @@
                   <Component id="firstButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="secondButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nextButtonMain" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ForceInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LaunchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -89,9 +95,22 @@
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(new NextAction(&quot;new next&quot;, cardDisplayArea))"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="ForceInput">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="text" type="java.lang.String" value="600"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="LaunchButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Launch"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LaunchButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Force"/>
       </Properties>
     </Component>
   </SubComponents>

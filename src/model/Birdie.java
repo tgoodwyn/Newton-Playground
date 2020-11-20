@@ -27,13 +27,13 @@ import view.ui.Screen;
  *
  * @author team 2
  */
-public class Birdie extends SpriteObject implements IControllable {
+public class Birdie extends SpriteObject {
 
     // the birdie has mass
     private int mass;
     private double velocity;
     private double acceleration;
-    private double force = 900;
+    //private double force = 900;
     private Simulation sim;
     private boolean movingStatus = false;
     private double frictionCoefficient;
@@ -73,19 +73,15 @@ public class Birdie extends SpriteObject implements IControllable {
 
     }
 
-    @Override
-    public void update(int keycode, Action.ActionType a) {
-        if (a == PRESSED) {
-            if (keycode == VK_UP && sim.isInputAllowed() == true) {
-                movingStatus = true;
-                double rawAcceleration = force / mass;
-                int dir = sim.getBirdieDirection();
-                acceleration = (dir > 0) ? rawAcceleration : -rawAcceleration;
-                velocity = 0;
-
-            }
-
+    public void launch(int force) {
+        if (sim.isInputAllowed()) {
+            movingStatus = true;
+            double rawAcceleration = force / mass;
+            int dir = sim.getBirdieDirection();
+            acceleration = (dir > 0) ? rawAcceleration : -rawAcceleration;
+            velocity = 0;
         }
+
     }
 
     public boolean isMoving() {

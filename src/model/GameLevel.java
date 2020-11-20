@@ -15,7 +15,7 @@ import controller.InputController;
  */
 public class GameLevel implements ISimulatable {
 
-    private final InputController ic;
+    //private final InputController ic;
 
     // the GameLevel owns the Simulation and the GameWorld
     // the GameWorld owns the physics objects 
@@ -45,7 +45,7 @@ public class GameLevel implements ISimulatable {
         world.build();
 
         // might be removing InputController stuff
-        ic = new InputController(world.getBirdie());
+        //ic = new InputController(world.getBirdie());
         
    
     }
@@ -73,9 +73,9 @@ public class GameLevel implements ISimulatable {
     }
 
     // might be removing InputController stuff
-    public InputController getInputController() {
-        return ic;
-    }
+//    public InputController getInputController() {
+//        return ic;
+//    }
     public boolean getWinStatus() {
         return winStatus;
     }

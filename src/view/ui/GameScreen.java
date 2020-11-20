@@ -30,7 +30,7 @@ import static view.ui.Screen.WIDTH;
  *
  * @author team 2
  */
-public class GameScreen extends Card implements KeyListener {
+public class GameScreen extends Card {
 
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
@@ -43,7 +43,7 @@ public class GameScreen extends Card implements KeyListener {
         // light blue        
         this.setBackground(new Color(154, 218, 252));
         // these two methods allow key events
-        addKeyListener(this);
+        //addKeyListener(this);
         setFocusable(true);
         
         // TODO: code for selecting current level goes here
@@ -74,24 +74,15 @@ public class GameScreen extends Card implements KeyListener {
         renderer.render(g);
 
     }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        level.getInputController().keyPressed(e.getKeyCode());
+    
+    public String getMe() {
+        return "HELLO FROM SCREEN";
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        level.getInputController().keyReleased(e.getKeyCode());
+    public GameLevel getLevel() {
+        return level;
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    
+    
 }
 
-        // determine which parameters 
-        // get passed into method for creating new GameLevel
-        // parameters: goalXStart - the x coordinate that the goal begins
-        //             ball - an object of type Birdie that has the appropriate
-        //                    mass, texture, and size for the level

@@ -5,6 +5,7 @@ import cards.Third;
 import cards.Second;
 import cards.First;
 import java.awt.Dimension;
+import model.Birdie;
 import view.ui.GameScreen;
 
 /**
@@ -34,8 +35,9 @@ public CardWindow() {
 
  TODO: Consider returning the instance of "CardManger"
  */
+CardManager cm;
 public void addCardsToHolder() {
-    CardManager cm = new CardManager(cardDisplayArea);
+    cm = new CardManager(cardDisplayArea);
     cm.addCard(new First(cm, "first"));
     cm.addCard(new GameScreen(cm, "game"));
     cm.addCard(new Third(cm, "third"));
@@ -64,7 +66,9 @@ private static void createAndShow() {
         firstButtonMain = new javax.swing.JButton();
         secondButtonMain = new javax.swing.JButton();
         nextButtonMain = new javax.swing.JButton(new NextAction("new next", cardDisplayArea));
-        jTextField1 = new javax.swing.JTextField();
+        ForceInput = new javax.swing.JTextField();
+        LaunchButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(50, 50));
@@ -86,7 +90,16 @@ private static void createAndShow() {
 
         nextButtonMain.setText("Next");
 
-        jTextField1.setText("jTextField1");
+        ForceInput.setText("600");
+
+        LaunchButton.setText("Launch");
+        LaunchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LaunchButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Force");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +111,11 @@ private static void createAndShow() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LaunchButton)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(ForceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(firstButtonMain)
                 .addGap(18, 18, 18)
@@ -117,7 +134,9 @@ private static void createAndShow() {
                     .addComponent(firstButtonMain)
                     .addComponent(secondButtonMain)
                     .addComponent(nextButtonMain)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ForceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LaunchButton)
+                    .addComponent(jLabel1))
                 .addGap(20, 20, 20))
         );
 
@@ -145,6 +164,26 @@ private static void createAndShow() {
         //this.setPreferredSize(new Dimension(800,500));
         //this.pack();
     }//GEN-LAST:event_secondButtonMainActionPerformed
+
+    private void LaunchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LaunchButtonActionPerformed
+        // TODO add your handling code here:
+        String text = ForceInput.getText();
+        int force = Integer.parseInt(text);
+        //int a = force + 100;
+        //System.out.println("should = force + 100: "+a);
+        int num = cardDisplayArea.getVisibleChildNumber();
+        System.out.println("card # = "+num);
+        String b = "uninitialized";
+        try {
+            GameScreen gs = (GameScreen)(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
+            Birdie birdie = gs.getLevel().getSimulation().getBirdie();
+            birdie.launch(force);
+            //b = gs.getMe();
+        } catch(Exception e) {
+            System.out.println("wrong screen");
+        }
+        System.out.println(b);
+    }//GEN-LAST:event_LaunchButtonActionPerformed
 
 /**
  Attempts to set the look-and-feel for the application. In this case it is the
@@ -191,9 +230,11 @@ public static void main(String args[]) {
     });
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ForceInput;
+    private javax.swing.JButton LaunchButton;
     private cardMgt.CardPanel cardDisplayArea;
     private javax.swing.JButton firstButtonMain;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton nextButtonMain;
     private javax.swing.JButton secondButtonMain;
     // End of variables declaration//GEN-END:variables
