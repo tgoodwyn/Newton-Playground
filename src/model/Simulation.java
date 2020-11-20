@@ -29,7 +29,7 @@ public class Simulation {
         // TODO: Fill out switch statement
         switch (levelType) {
             case STONE:
-                this.levelFrictionCoefficient = .85;
+                this.levelFrictionCoefficient = .90;
                 break;
             default:
                 this.levelFrictionCoefficient = .75;
@@ -48,12 +48,13 @@ public class Simulation {
         for (WorldObject o : dynamics) {
             o.tick();
         }
+        int difference = goalX - birdie.getX();
+        birdieDirection = (difference >= 0) ? 1 : -1;
         if (birdie.isMoving() || camera.isFollowing()) {
             inputAllowed = false;
         } else {
             inputAllowed = true;
-            int difference = goalX - birdie.getX();
-            birdieDirection = (difference >= 0) ? 1 : -1;
+
         }
     }
 
@@ -111,7 +112,5 @@ public class Simulation {
     public void setInputAllowed(boolean inputAllowed) {
         this.inputAllowed = inputAllowed;
     }
-    
-    
 
 }

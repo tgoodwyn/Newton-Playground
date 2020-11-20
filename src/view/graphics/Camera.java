@@ -31,43 +31,83 @@ public class Camera extends WorldObject {
     private Birdie followTarget;
     public ArrayList<DrawableObject> visibleObjects;
 
-    private int cameraFollowOffsetX = -50;
-    private int cameraFollowOffsetY = 400;
-    
-    public static final int triggerOffset = 200;
-    private int followTrigger;
-    private boolean following;
+    private int dir;
+    private int ballX;
+    private boolean following = false;
+    private int offset;
+    private double terminalVelocity;
+    private int poleLeft;
+    private int poleRight;
 
     public Camera(int x, int y, int w, int h, Simulation s, Birdie birdie) {
         super(x, y, w, h, s);
         this.viewPlane = new BetterRect(x, y, Screen.WIDTH, Screen.HEIGHT);
         visibleObjects = new ArrayList<DrawableObject>();
         followTarget = birdie;
+        ballX = followTarget.getCenter();
+
+        offset = (ballX - x) + 80;
+        poleLeft = x + offset;
+        poleRight = Screen.WIDTH - offset;
     }
 
     public void tick() {
-        int dir = sim.getBirdieDirection();
-        //System.out.println("dir = " + dir);
+        dir = sim.getBirdieDirection();
+        ballX = followTarget.getCenter();
+        //boolean moving = followTarget.isMoving();
 
-        boolean moving = followTarget.isMoving();
-        int ballX = followTarget.x;
-        if (moving) {
-            if (dir == 1) {
-                if (ballX > followTrigger && x < ballX) {
-                    follow();
-                }
-            } else if (dir == -1) {
-                if (ballX < followTrigger && x > ballX) {
-                    follow();
-                }
-            } 
-        } 
+        //if (!following && moving) {
+        //if (dir == 1) {
+        if (ballX > poleRight) {
+            terminalVelocity = followTarget.getVelocity();
+            following = true;
+        }
+        //} else if (dir == -1) {
+        if (ballX < poleLeft) {
+            terminalVelocity = followTarget.getVelocity();
+            following = true;
 
+            //}
+            //}
+        }
+        if (following) {
+            follow();
+        }
         visibleObjects.clear();
     }
 
     public void follow() {
-        x += followTarget.getVelocity();
+        //int center = followTarget.getCenter();
+        if (!followTarget.isMoving()) {
+            int newPoleLeft = (ballX - offset);
+            int newPoleRight = (ballX + offset - Screen.WIDTH);
+            boolean ballLeft = (x > newPoleLeft);
+            boolean ballRight = (x < newPoleRight);
+            if (dir == 1 && ballLeft) {
+                following = false;
+                terminalVelocity = 0;
+            }
+            if (dir == -1 && ballRight) {
+                following = false;
+                terminalVelocity = 0;
+            }
+        }
+        if (following) {
+            int dampAbs = 1;
+            int dampAmt = (terminalVelocity > 0) ? dampAbs : -dampAbs;
+            if (followTarget.isMoving()) {
+                x += terminalVelocity;
+            } else {
+                x += dampAmt;
+            }
+        }
+    }
+
+    public void setNewFollowTrigger(int center) {
+        int dir = sim.getBirdieDirection();
+        int newTrigger = (dir > 0)
+                ? (x + Screen.WIDTH) - center : x + center;
+        //this.followTrigger = newTrigger;
     }
 
     public void snap() {
@@ -81,8 +121,7 @@ public class Camera extends WorldObject {
                 if (!done) {
                 done = true;
                 }
-    */
-
+     */
     public void clip() {
         int c = 0;
         for (DrawableObject i : sim.getAllDrawable()) {
@@ -100,12 +139,21 @@ public class Camera extends WorldObject {
         return following;
     }
 
-    public void setFollowTrigger(int followTrigger) {
-        this.followTrigger = followTrigger;
+    public int getFollowTrigger() {
+        return 0;
+        //followTrigger;
     }
 
     public int getCameraOffset() {
-        return cameraFollowOffsetX;
+        return offset;
+    }
+
+    public int getPoleLeft() {
+        return poleLeft;
+    }
+
+    public int getPoleRight() {
+        return poleRight;
     }
 
 }

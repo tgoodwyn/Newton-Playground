@@ -21,6 +21,7 @@ import view.graphics.Texture;
 import view.graphics.objects.SpriteObject;
 import java.lang.Math;
 import view.graphics.Camera;
+import view.ui.Screen;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Birdie extends SpriteObject implements IControllable {
     private int mass;
     private double velocity;
     private double acceleration;
-    private double force = 600;
+    private double force = 900;
     private Simulation sim;
     private boolean movingStatus = false;
     private double frictionCoefficient;
@@ -47,6 +48,8 @@ public class Birdie extends SpriteObject implements IControllable {
         frictionCoefficient = s.getLevelFriction();
         s.setBirdie(this);
         sim = s;
+        center = (x + width) / 2;
+
     }
 
     @Override
@@ -61,11 +64,9 @@ public class Birdie extends SpriteObject implements IControllable {
             center = (x + width) / 2;
             if (Math.abs(velocity) < 0.05) {
                 movingStatus = false;
-                int dir = sim.getBirdieDirection();
-                int newTrigger = camera.triggerOffset * dir + center;
-                System.out.println("current ball pos = "+x);
-                System.out.println("new trigger = "+newTrigger);
-                camera.setFollowTrigger(newTrigger);
+
+//                System.out.println("current ball pos = " + x);
+//                System.out.println("new trigger = " + newTrigger);
             }
 
         }
@@ -77,15 +78,11 @@ public class Birdie extends SpriteObject implements IControllable {
         if (a == PRESSED) {
             if (keycode == VK_UP && sim.isInputAllowed() == true) {
                 movingStatus = true;
-                acceleration = force / mass;
+                double rawAcceleration = force / mass;
+                int dir = sim.getBirdieDirection();
+                acceleration = (dir > 0) ? rawAcceleration : -rawAcceleration;
                 velocity = 0;
 
-            }
-
-            if (keycode == VK_DOWN && sim.isInputAllowed() == true) {
-                movingStatus = true;
-                acceleration = -(force / mass);
-                velocity = 0;
             }
 
         }
@@ -97,6 +94,10 @@ public class Birdie extends SpriteObject implements IControllable {
 
     public double getVelocity() {
         return velocity;
+    }
+
+    public int getCenter() {
+        return center;
     }
 
 }

@@ -50,7 +50,7 @@ public class GameScreen extends Card implements KeyListener {
         // user selection will be from an enum GameLevel.Levels
         // defaulting here to STONE
         // also passing in the X position where the goal begins
-        int goalXStart = 500; // default
+        int goalXStart = 800; // default
         level = new GameLevel(GameLevel.LevelType.STONE, goalXStart);
         
         // create a renderer and attach the game logic, via the level camera
