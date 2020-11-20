@@ -47,7 +47,7 @@ public class Camera extends WorldObject {
         ballX = followTarget.getCenter();
 
         offset = 130;
-        poleLeft = x + offset;
+        poleLeft = -70;
         poleRight = Screen.WIDTH - offset;
     }
 
@@ -57,12 +57,13 @@ public class Camera extends WorldObject {
         if (ballX > poleRight && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
             following = true;
-        } else if (ballX < poleLeft  && followTarget.isMoving()) {
+        } else if (ballX < poleLeft && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
             following = true;
         }
         if (following) {
             follow();
+            //System.out.println("following");
         }
         visibleObjects.clear();
     }
@@ -71,6 +72,14 @@ public class Camera extends WorldObject {
         //int center = followTarget.getCenter();
         if (!followTarget.isMoving()) {
             if (dir == 1) {
+                // this code is purely a guard rail
+                if (x > ballX) {
+                    x = ballX - offset;
+                    following = false;
+                    terminalVelocity = 0;
+                    poleRight = x + Screen.WIDTH - offset;
+                    poleLeft = ballX;
+                }
                 //ball needs to be greater than camX+offset
                 // ballX > camX + offset
                 // 140 > 0 + 20
@@ -82,6 +91,14 @@ public class Camera extends WorldObject {
                 };
             }
             if (dir == -1) {
+                // same guard rail
+                if (x < ballX) {
+                    x = ballX + offset - Screen.WIDTH;
+                    following = false;
+                    terminalVelocity = 0;
+                    poleRight = ballX;
+                    poleLeft = x + offset;
+                }
                 //ball needs to be less than camX+ScreenWidth - offset
                 if (x > ballX + offset - Screen.WIDTH) {
                     following = false;
@@ -102,13 +119,6 @@ public class Camera extends WorldObject {
                 x += dampAmt;
             }
         }
-    }
-
-    public void setNewFollowTrigger(int center) {
-        int dir = sim.getBirdieDirection();
-        int newTrigger = (dir > 0)
-                ? (x + Screen.WIDTH) - center : x + center;
-        //this.followTrigger = newTrigger;
     }
 
     public void snap() {
