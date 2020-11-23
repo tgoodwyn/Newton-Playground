@@ -173,7 +173,7 @@ private static void createAndShow() {
         //System.out.println("should = force + 100: "+a);
         int num = cardDisplayArea.getVisibleChildNumber();
         System.out.println("card # = "+num);
-        String b = "uninitialized";
+        //String b = "uninitialized";
         try {
             GameScreen gs = (GameScreen)(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
             Birdie birdie = gs.getLevel().getSimulation().getBirdie();
@@ -182,7 +182,7 @@ private static void createAndShow() {
         } catch(Exception e) {
             System.out.println("wrong screen");
         }
-        System.out.println(b);
+        //System.out.println(b);
     }//GEN-LAST:event_LaunchButtonActionPerformed
 
 /**
