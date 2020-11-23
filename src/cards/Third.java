@@ -101,9 +101,10 @@ public Third(CardManager cm, String name) {
  @param evt as an Action Event
  */
     private void ancestorButtonCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ancestorButtonCardActionPerformed
-        StringBuilder sb = new StringBuilder();
-        sb.append("This is ").append(this).append("the Parent of this is ").append(this.getParent());
-        ancestorButtonTextDisplay.setText(sb.toString());
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("This is ").append(this).append("the Parent of this is ").append(this.getParent());
+//        ancestorButtonTextDisplay.setText(sb.toString());
+        System.out.println("replacement code for ancestor button");
     }//GEN-LAST:event_ancestorButtonCardActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ancestorButtonCard;

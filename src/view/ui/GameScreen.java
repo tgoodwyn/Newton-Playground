@@ -83,6 +83,8 @@ public class GameScreen extends Card {
         return level;
     }
     
-    
+    public GraphicsRenderer getRenderer() {
+        return renderer;
+    }
 }
 
