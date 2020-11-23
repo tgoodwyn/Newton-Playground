@@ -56,7 +56,7 @@ public class GraphicsRenderer {
 
         }
 
-        g.drawString("Name: " + name, 150, 350);
+        g.drawString("Name: " + name, 150, 80);
 
     }
 

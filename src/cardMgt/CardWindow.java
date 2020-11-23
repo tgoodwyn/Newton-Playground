@@ -49,15 +49,17 @@ public class CardWindow extends javax.swing.JFrame {
         return cm;
     }
 
-    public void putNameOnScreen(String name) {
-        try {
-            GameScreen gs = (GameScreen) (cm.getCards().get(1));
-            gs.getRenderer().setName(name);
-            //b = gs.getMe();
-        } catch (Exception e) {
-            System.out.println("game screen not gotten in name call");
-        }
-    }
+    
+// DELETE     
+//    public void putNameOnScreen(String name) {
+//        try {
+//            GameScreen gs = (GameScreen) (cm.getCards().get(1));
+//            gs.getRenderer().setName(name);
+//            //b = gs.getMe();
+//        } catch (Exception e) {
+//            System.out.println("game screen not gotten in name call");
+//        }
+//    }
 
     /**
      * Creates a <code>CardWindow</code>, puts the managed cards in the window,
@@ -175,10 +177,6 @@ public class CardWindow extends javax.swing.JFrame {
      */
     private void secondButtonMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondButtonMainActionPerformed
         cardDisplayArea.showCard("game");
-        System.out.println("yo");
-        //cardDisplayArea.requestFocus();
-        //this.setPreferredSize(new Dimension(800,500));
-        //this.pack();
     }//GEN-LAST:event_secondButtonMainActionPerformed
 
     private void LaunchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LaunchButtonActionPerformed

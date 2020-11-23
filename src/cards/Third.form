@@ -29,10 +29,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ancestorButtonCard" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameButton" min="-2" max="-2" attributes="0"/>
                   <Component id="testButtonCard" min="-2" max="-2" attributes="0"/>
+                  <Component id="NameField" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="201" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
@@ -43,14 +44,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="testButtonCard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="ancestorButtonCard" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="NameField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="157" max="-2" attributes="0"/>
                   </Group>
@@ -69,12 +72,12 @@
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(new NextAction(&quot;managed next&quot;,cm.getManager()))"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="ancestorButtonCard">
+    <Component class="javax.swing.JButton" name="nameButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ancestor"/>
+        <Property name="text" type="java.lang.String" value="Set Name"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ancestorButtonCardActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -102,5 +105,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="NameField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Default"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
