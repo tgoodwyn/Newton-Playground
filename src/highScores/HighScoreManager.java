@@ -82,7 +82,7 @@ public class HighScoreManager {
 }
     public String getHighscoreString() {
         String highscoreString = "";
-	Static int max = 10;
+	int max = 10;
 
         ArrayList<Score> scores;
         scores = getScores();
@@ -93,7 +93,7 @@ public class HighScoreManager {
             x = max;
         }
         while (i < x) {
-            highscoreString += (i + 1) + ".\t" + scores.get(i).getNaam() + "\t\t" + scores.get(i).getScore() + "\n";
+            highscoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t\t" + scores.get(i).getScore() + "\n";
             i++;
         }
         return highscoreString;
