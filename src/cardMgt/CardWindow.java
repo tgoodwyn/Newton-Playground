@@ -183,11 +183,7 @@ public class CardWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         String text = ForceInput.getText();
         int force = Integer.parseInt(text);
-        //int a = force + 100;
-        //System.out.println("should = force + 100: "+a);
         int num = cardDisplayArea.getVisibleChildNumber();
-        //System.out.println("card # = "+num);
-        //String b = "uninitialized";
         try {
             GameScreen gs = (GameScreen) (cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
             Birdie birdie = gs.getLevel().getSimulation().getBirdie();

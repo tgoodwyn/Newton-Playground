@@ -7,12 +7,14 @@ package highScores;
 
 import java.util.*;
 import java.io.*;
+
 /**
  *
  * @author justi
  */
 public class HighScoreManager {
-        // An arraylist of the type "score" we will use to work with the scores inside the class
+    // An arraylist of the type "score" we will use to work with the scores inside the class
+
     private ArrayList<Score> scores;
 
     // The name of the file where the highscores will be saved
@@ -26,20 +28,24 @@ public class HighScoreManager {
         //initialising the scores-arraylist
         scores = new ArrayList<Score>();
     }
+
     public ArrayList<Score> getScores() {
         loadScoreFile();
         sort();
         return scores;
     }
+
     private void sort() {
         ScoreComparator comparator = new ScoreComparator();
         Collections.sort(scores, comparator);
-}
+    }
+
     public void addScore(String name, int score) {
         loadScoreFile();
         scores.add(new Score(name, score));
         updateScoreFile();
-}
+    }
+
     public void loadScoreFile() {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(HIGHSCORE_FILE));
@@ -60,7 +66,8 @@ public class HighScoreManager {
                 System.out.println("[Laad] IO Error: " + e.getMessage());
             }
         }
-}
+    }
+
     public void updateScoreFile() {
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
@@ -79,10 +86,11 @@ public class HighScoreManager {
                 System.out.println("[Update] Error: " + e.getMessage());
             }
         }
-}
+    }
+
     public String getHighscoreString() {
         String highscoreString = "";
-	Static int max = 10;
+        int max = 10;
 
         ArrayList<Score> scores;
         scores = getScores();
@@ -93,9 +101,9 @@ public class HighScoreManager {
             x = max;
         }
         while (i < x) {
-            highscoreString += (i + 1) + ".\t" + scores.get(i).getNaam() + "\t\t" + scores.get(i).getScore() + "\n";
+            highscoreString += (i + 1) + ".\t" + scores.get(i).getName() + "\t\t" + scores.get(i).getScore() + "\n";
             i++;
         }
         return highscoreString;
-}
+    }
 }

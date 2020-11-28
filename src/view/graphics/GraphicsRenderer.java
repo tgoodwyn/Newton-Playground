@@ -7,7 +7,12 @@ package view.graphics;
 
 import view.graphics.objects.DrawableObject;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import model.GameLevel;
 import model.Simulation;
 
@@ -19,8 +24,9 @@ public class GraphicsRenderer {
 
     private final Camera cam;
     private final GameLevel level;
-    
+
     private String name = "Anonymous";
+
     public GraphicsRenderer(Camera c, GameLevel level) {
         this.cam = c;
         this.level = level;
@@ -55,8 +61,16 @@ public class GraphicsRenderer {
             g.drawString("howdy", 50, 50);
 
         }
+        
+        Image tex = null;
+        try {
+            tex = ImageIO.read(getClass().getResourceAsStream("/Background 1.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(GraphicsRenderer.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         g.drawString("Name: " + name, 150, 80);
+        g.drawImage(tex, 0, 0, 1000, 300, null);
 
     }
 

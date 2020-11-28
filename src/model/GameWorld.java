@@ -90,7 +90,7 @@ public class GameWorld {
         // TODO: add other surface types
         switch (levelType) {
             case STONE:
-                surfaceImagePath = "/Ice.png";
+                surfaceImagePath = "/Stone.png";
                 break;
         }
 
