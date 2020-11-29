@@ -5,7 +5,7 @@
  */
 package view.graphics;
 
-import utilities.BetterRect;
+import utilities.math.BetterRect;
 import view.graphics.objects.DrawableObject;
 import java.awt.Graphics;
 import java.awt.Point;

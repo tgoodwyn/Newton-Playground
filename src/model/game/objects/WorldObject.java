@@ -7,7 +7,7 @@ package model.game.objects;
 
 import model.physics.Simulation;
 import model.physics.ISimulatable;
-import utilities.BetterRect;
+import utilities.math.BetterRect;
 import java.awt.Image;
 import java.awt.Rectangle;
 
