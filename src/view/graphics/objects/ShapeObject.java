@@ -14,7 +14,7 @@ import model.physics.Simulation;
  */
 public class ShapeObject extends DrawableObject {
 
-    public ShapeObject(int x, int y, int width, int height, Simulation s) {
+    public ShapeObject(double x, double y, int width, int height, Simulation s) {
         super(x, y, width, height, s);
     }
 

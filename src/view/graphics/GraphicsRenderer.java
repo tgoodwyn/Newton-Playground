@@ -46,10 +46,10 @@ public class GraphicsRenderer {
         // Put the draw code for static screen objects here
         g.drawString("Direction: " + dir, 150, 50);
         String a = (sim.isInputAllowed()) ? "Input yes" : "Input no";
-        String b = "Ball x : " + (sim.getBirdie().getX());
-        String c = "Camera x : " + (sim.getCamera().getX());
-        String d = "PoleRight : " + (sim.getCamera().getPoleRight());
-        String e = "PoleLeft : " + (sim.getCamera().getPoleLeft());
+        String b = "Ball x : " + (int)(sim.getBirdie().getX());
+        String c = "Camera x : " + (int)(sim.getCamera().getX());
+        String d = "PoleRight : " + (int)(sim.getCamera().getPoleRight());
+        String e = "PoleLeft : " + (int)(sim.getCamera().getPoleLeft());
         g.drawString(a, 250, 50);
         g.drawString(b, 350, 50);
         g.drawString(c, 450, 50);

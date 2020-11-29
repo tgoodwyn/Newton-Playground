@@ -24,13 +24,13 @@ public class Camera extends WorldObject {
     public ArrayList<DrawableObject> visibleObjects;
 
     private int dir;
-    private int ballX;
+    private double ballX;
     private boolean following = false;
     private int memdir = 0;
     private int offset;
     private double terminalVelocity;
-    private int poleLeft;
-    private int poleRight;
+    private double poleLeft;
+    private double poleRight;
 
     public Camera(int x, int y, int w, int h, Simulation s, Birdie birdie) {
         super(x, y, w, h, s);
@@ -139,10 +139,10 @@ public class Camera extends WorldObject {
         int c = 0;
         for (DrawableObject obj : sim.getAllDrawable()) {
             if (viewPlane.intersects(obj)) {
-                int screenX = obj.x - (x);
-                int screenY = -(obj.y - (y));
-                obj.setScreenX(screenX);
-                obj.setScreenY(screenY);
+                double screenX = obj.x - (x);
+                double screenY = -(obj.y - (y));
+                obj.setScreenX((int)screenX);
+                obj.setScreenY((int)screenY);
                 visibleObjects.add(obj);
             }
         }
@@ -158,11 +158,11 @@ public class Camera extends WorldObject {
         return offset;
     }
 
-    public int getPoleLeft() {
+    public double getPoleLeft() {
         return poleLeft;
     }
 
-    public int getPoleRight() {
+    public double getPoleRight() {
         return poleRight;
     }
 

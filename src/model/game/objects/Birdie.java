@@ -28,9 +28,9 @@ public class Birdie extends SpriteObject {
     private double frictionCoefficient;
     //private int dampener;
     private Camera camera;
-    private int center;
+    private double center;
 
-    public Birdie(int x, int y, int width, int height, String imagePath, int mass,
+    public Birdie(double x, double y, int width, int height, String imagePath, int mass,
             Simulation s) {
         super(x, y, width, height, new Texture(imagePath), s);
         this.mass = mass;
@@ -81,7 +81,7 @@ public class Birdie extends SpriteObject {
         return velocity;
     }
 
-    public int getCenter() {
+    public double getCenter() {
         return center;
     }
 

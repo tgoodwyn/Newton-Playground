@@ -13,15 +13,15 @@ import java.awt.Point;
  */
 public class BetterRect {
 
-    public BetterRect(int x, int y, int width, int height) {
+    public BetterRect(double x, double y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public int x;
-    public int y;
+    public double x;
+    public double y;
     public int width;
     public int height;
     
@@ -33,11 +33,14 @@ public class BetterRect {
     }
     
     public Point[] getCorners() {
+        int a = (int) x;
+        int b = (int) y;
         Point[] corners = new Point[]{
-            new Point(x,y),
-            new Point(x+width,y),
-            new Point(x,y-height),
-            new Point(x+width,y-height)
+            
+            new Point(a,b),
+            new Point(a+width,b),
+            new Point(a,b-height),
+            new Point(a+width,b-height)
         };
         return corners;
     }
@@ -47,11 +50,11 @@ public class BetterRect {
             && p.y < this.y && p.y > this.y - this.height) return true;
         return false;
     }
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 

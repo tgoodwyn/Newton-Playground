@@ -51,7 +51,7 @@ public class Simulation {
         for (WorldObject o : dynamics) {
             o.tick();
         }
-        int difference = goalX - birdie.getX();
+        double difference = goalX - birdie.getX();
         birdieDirection = (difference >= 0) ? 1 : -1;
         if (birdie.isMoving() || camera.isFollowing()) {
             inputAllowed = false;

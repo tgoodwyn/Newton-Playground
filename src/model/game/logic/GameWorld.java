@@ -43,7 +43,7 @@ public class GameWorld {
         switch (levelType) {
             case STONE:
                 // its x,y,w,h
-                this.birdie = new Birdie(0, 50, 50, 50, "/Ball.png",
+                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/Ball.png",
                         // its mass
                         50, sim);
                 break;
@@ -127,7 +127,7 @@ public class GameWorld {
                 }
 
                 SurfaceBlock block = new SurfaceBlock(
-                        x, y, step, step, curTex, sim);
+                        (double)x, (double)y, step, step, curTex, sim);
                 // add the block to the simulation
                 sim.addStatic(block);
                 y -= step;

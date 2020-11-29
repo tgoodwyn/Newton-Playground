@@ -19,7 +19,7 @@ public abstract class WorldObject extends BetterRect implements ISimulatable {
 
     public Simulation sim;
 
-    public WorldObject(int x, int y, int width, int height, Simulation s) {
+    public WorldObject(double x, double y, int width, int height, Simulation s) {
         super(x, y, width, height);
         this.sim = s;
     }

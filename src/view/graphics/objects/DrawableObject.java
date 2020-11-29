@@ -17,10 +17,10 @@ public abstract class DrawableObject extends WorldObject {
 
     int screenX, screenY;
 
-    public DrawableObject(int x, int y, int width, int height, Simulation s) {
+    public DrawableObject(double x, double y, int width, int height, Simulation s) {
         super(x, y, width, height, s);
-        screenX = x;
-        screenY = y;
+        screenX = (int) x;
+        screenY = (int) y;
     }
 
     public abstract void draw(Graphics g);

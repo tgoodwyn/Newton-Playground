@@ -7,7 +7,6 @@ package model.game.logic;
 
 import model.physics.ISimulatable;
 import model.physics.Simulation;
-import model.game.logic.GameWorld;
 import model.game.objects.Goal;
 import model.game.objects.SurfaceBoundary;
 
@@ -61,7 +60,7 @@ public class GameLevel implements ISimulatable {
         
         int goalStart = goal.getX();
         int goalEnd = goal.getX()+goal.getWidth();
-        int birdiePos = world.getBirdie().getX();
+        double birdiePos = world.getBirdie().getX();
         if (birdiePos >= goalStart && birdiePos <= goalEnd) {
             winStatus = true;
         } else {

@@ -18,7 +18,7 @@ import view.graphics.Texture;
 public class SurfaceBlock extends SpriteObject {
     
     
-    public SurfaceBlock(int x, int y, int width, int height, 
+    public SurfaceBlock(double x, double y, int width, int height, 
                  Texture tex, Simulation sim) {
         super(x, y, width, height,tex, sim);
     }

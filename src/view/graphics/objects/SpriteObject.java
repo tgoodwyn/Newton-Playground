@@ -17,7 +17,7 @@ public class SpriteObject extends DrawableObject {
     
     protected final Texture tex;
     
-    public SpriteObject(int x, int y, int width, int height, 
+    public SpriteObject(double x, double y, int width, int height, 
             Texture tex, Simulation sim) {
         super(x, y, width, height, sim);
         this.tex = tex;
