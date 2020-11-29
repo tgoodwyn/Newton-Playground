@@ -7,17 +7,9 @@ package model.game.objects;
 
 
 import model.physics.Simulation;
-import java.awt.Graphics;
-import java.awt.Image;
-import static java.awt.event.KeyEvent.VK_A;
-import static java.awt.event.KeyEvent.VK_DOWN;
-import static java.awt.event.KeyEvent.VK_LEFT;
-import static java.awt.event.KeyEvent.VK_RIGHT;
-import static java.awt.event.KeyEvent.VK_SPACE;
-import static java.awt.event.KeyEvent.VK_UP;
+
 import view.graphics.Texture;
 import view.graphics.objects.SpriteObject;
-import java.lang.Math;
 import view.graphics.Camera;
 
 /**

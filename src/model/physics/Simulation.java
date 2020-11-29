@@ -18,7 +18,7 @@ import view.graphics.Camera;
  */
 public class Simulation {
 
-    ArrayList<WorldObject> dynamics = new ArrayList<WorldObject>();
+    ArrayList<WorldObject> dynamics = new ArrayList<>();
     ArrayList<WorldObject> statics = new ArrayList<WorldObject>();
     ArrayList<DrawableObject> allDrawable = new ArrayList<DrawableObject>();
     private double levelFrictionCoefficient;

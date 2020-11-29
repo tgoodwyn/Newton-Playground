@@ -6,21 +6,13 @@
 package model.game.logic;
 
 import model.physics.Simulation;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.lang.System.Logger.Level;
-import java.util.ArrayList;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import model.game.objects.Birdie;
 import view.graphics.Camera;
 import view.graphics.Texture;
-import model.game.logic.GameLevel.LevelType;
 import model.game.objects.Goal;
 import model.game.objects.Surface;
 import model.game.objects.SurfaceBlock;
+import view.graphics.objects.ShapeObject;
 
 /**
  *
@@ -79,6 +71,7 @@ public class GameWorld {
     public void addStaticObjects() {
         createSurface();
         addSurfaceToSimulation();
+        sim.addStatic(new ShapeObject(0,0,50,50,sim));
     }
 
     public void addDynamicObjects() {
@@ -132,7 +125,6 @@ public class GameWorld {
                 else {
                     curTex = levelSurface.getBodyTexture();
                 }
-//                System.out.println("block instantiated at (" + x + (", " + y + ")"));
 
                 SurfaceBlock block = new SurfaceBlock(
                         x, y, step, step, curTex, sim);

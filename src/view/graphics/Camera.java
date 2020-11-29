@@ -7,11 +7,7 @@ package view.graphics;
 
 import utilities.math.BetterRect;
 import view.graphics.objects.DrawableObject;
-import java.awt.Graphics;
-import java.awt.Point;
-import static java.awt.event.KeyEvent.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import model.game.objects.Birdie;
 import model.physics.Simulation;
 import model.game.objects.WorldObject;
@@ -141,13 +137,13 @@ public class Camera extends WorldObject {
      */
     public void clip() {
         int c = 0;
-        for (DrawableObject i : sim.getAllDrawable()) {
-            if (viewPlane.intersects(i)) {
-                int screenX = i.x - (x);
-                int screenY = -(i.y - (y));
-                i.setScreenX(screenX);
-                i.setScreenY(screenY);
-                visibleObjects.add(i);
+        for (DrawableObject obj : sim.getAllDrawable()) {
+            if (viewPlane.intersects(obj)) {
+                int screenX = obj.x - (x);
+                int screenY = -(obj.y - (y));
+                obj.setScreenX(screenX);
+                obj.setScreenY(screenY);
+                visibleObjects.add(obj);
             }
         }
     }
@@ -156,10 +152,7 @@ public class Camera extends WorldObject {
         return following;
     }
 
-    public int getFollowTrigger() {
-        return 0;
-        //followTrigger;
-    }
+
 
     public int getCameraOffset() {
         return offset;

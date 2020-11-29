@@ -47,7 +47,7 @@ public class GameScreen extends JPanel {
         // create a renderer and attach the game logic, via the level camera
         renderer = new GraphicsRenderer(level.getWorld().getCamera(), level);
         // starts the game loop
-        stopwatch = new Timer(7, gameTimer);
+        stopwatch = new Timer(17, gameTimer);
         stopwatch.start();
 
     }
