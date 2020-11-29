@@ -90,6 +90,16 @@ public class GameWorld {
             case STONE:
                 surfaceImagePath = "/Stone.png";
                 break;
+            case ICE:
+                surfaceImagePath = "/ICE.png";
+                break;
+            case GRASS:
+                surfaceImagePath = "/GRASS.png";
+                break;
+            case SAND:
+                surfaceImagePath = "/SAND.png";
+                break;
+            
         }
 
         levelSurface = new Surface(-500, 10000,

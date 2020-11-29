@@ -32,7 +32,7 @@ public class Simulation {
         // TODO: Fill out switch statement
         switch (levelType) {
             case STONE:
-                this.levelFrictionCoefficient = .95;
+                this.levelFrictionCoefficient = .85;
                 break;
             default:
                 this.levelFrictionCoefficient = .75;

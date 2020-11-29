@@ -1,6 +1,7 @@
 package view.ui;
 
 import java.awt.Dimension;
+import model.game.logic.GameLevel;
 import model.game.objects.Birdie;
 import view.ui.GameScreen;
 
@@ -59,7 +60,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        LevelSelector = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new GameScreen();
 
@@ -105,6 +106,11 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel1.setText("Force");
 
         jButton1.setText("<html><b>New Game</b></html>");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Red", "Blue", "Green" }));
 
@@ -135,7 +141,12 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sand", "Stone", "Ice", "Grass" }));
+        LevelSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SAND", "STONE", "ICE", "GRASS" }));
+        LevelSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LevelSelectorActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Game Level");
         jLabel5.setToolTipText("");
@@ -144,7 +155,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 795, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(251, 251, 251)
                         .addComponent(jLabel5)
                         .addGap(35, 35, 35)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(LevelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -197,7 +208,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LaunchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LevelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(ForceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -235,8 +246,21 @@ public class MainWindow extends javax.swing.JFrame {
         GameScreen gs = (GameScreen) jPanel1; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
         Birdie birdie = gs.getLevel().getSimulation().getBirdie();
         birdie.launch(force);
+        gs.getLevel().addToStrokeCount();
 
     }//GEN-LAST:event_LaunchButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String x = LevelSelector.getSelectedItem().toString();
+        GameLevel.LevelType level = GameLevel.LevelType.valueOf(x);
+        GameScreen gs = (GameScreen) jPanel1; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
+        gs.newLevel(800, level);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void LevelSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelSelectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LevelSelectorActionPerformed
 
     /**
      * Attempts to set the look-and-feel for the application. In this case it is
@@ -290,10 +314,10 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ForceInput;
     private javax.swing.JButton LaunchButton;
+    private javax.swing.JComboBox<String> LevelSelector;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

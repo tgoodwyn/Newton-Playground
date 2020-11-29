@@ -25,7 +25,7 @@ public class GameScreen extends JPanel {
     public static final int HEIGHT = 300;
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
-    private final GameLevel level;
+    private GameLevel level;
 
     public GameScreen() {
         //super(cm, name);
@@ -64,6 +64,12 @@ public class GameScreen extends JPanel {
         super.paintComponent(g);
         renderer.render(g);
 
+    }
+
+    public void newLevel(int goalXStart, GameLevel.LevelType levelType) {
+        level = new GameLevel(levelType, goalXStart);
+        // create a renderer and attach the game logic, via the level camera
+        renderer = new GraphicsRenderer(level.getWorld().getCamera(), level);
     }
 
     public String getMe() {
