@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import model.GameLevel;
-import model.Simulation;
+import model.game.logic.GameLevel;
+import model.physics.Simulation;
 
 /**
  *
@@ -70,7 +70,7 @@ public class GraphicsRenderer {
         }
 
         g.drawString("Name: " + name, 150, 80);
-        g.drawImage(tex, 0, 0, 1000, 300, null);
+        //g.drawImage(tex, 0, 0, 1000, 300, null);
 
     }
 

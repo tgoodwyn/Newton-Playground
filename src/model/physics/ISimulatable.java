@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.ui;
+package model.physics;
 
 /**
  *
- * @author tgood
+ * @author team 2
  */
-public class temp {
+public interface ISimulatable {
     
+    public void tick();
+    public Simulation getSimulation();
 }

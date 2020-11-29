@@ -6,8 +6,8 @@
 package view.graphics.objects;
 
 import java.awt.Graphics;
-import model.Simulation;
-import model.WorldObject;
+import model.physics.Simulation;
+import model.game.objects.WorldObject;
 
 /**
  *

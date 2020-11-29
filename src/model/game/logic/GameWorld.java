@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.logic;
 
+import model.physics.Simulation;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,9 +14,13 @@ import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import model.game.objects.Birdie;
 import view.graphics.Camera;
 import view.graphics.Texture;
-import model.GameLevel.LevelType;
+import model.game.logic.GameLevel.LevelType;
+import model.game.objects.Goal;
+import model.game.objects.Surface;
+import model.game.objects.SurfaceBlock;
 
 /**
  *

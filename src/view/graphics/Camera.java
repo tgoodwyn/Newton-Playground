@@ -6,20 +6,16 @@
 package view.graphics;
 
 import utilities.BetterRect;
-import controller.IControllable;
-import view.ui.Screen;
 import view.graphics.objects.DrawableObject;
-import view.graphics.objects.ShapeObject;
-import controller.Action;
 import java.awt.Graphics;
 import java.awt.Point;
 import static java.awt.event.KeyEvent.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import model.Birdie;
-import model.Simulation;
-import model.WorldObject;
-import view.ui.Screen;
+import model.game.objects.Birdie;
+import model.physics.Simulation;
+import model.game.objects.WorldObject;
+import view.ui.GameScreen;
 
 /**
  *
@@ -42,14 +38,14 @@ public class Camera extends WorldObject {
 
     public Camera(int x, int y, int w, int h, Simulation s, Birdie birdie) {
         super(x, y, w, h, s);
-        this.viewPlane = new BetterRect(x, y, Screen.WIDTH, Screen.HEIGHT);
+        this.viewPlane = new BetterRect(x, y, GameScreen.WIDTH, GameScreen.HEIGHT);
         visibleObjects = new ArrayList<DrawableObject>();
         followTarget = birdie;
         ballX = followTarget.getCenter();
 
         offset = 130;
         poleLeft = -70;
-        poleRight = Screen.WIDTH - offset;
+        poleRight = GameScreen.WIDTH - offset;
     }
 
     public void tick() {
@@ -81,7 +77,7 @@ public class Camera extends WorldObject {
                         //x = ballX - offset;
                         following = false;
                         terminalVelocity = 0;
-                        poleRight = x + Screen.WIDTH - offset;
+                        poleRight = x + GameScreen.WIDTH - offset;
                         poleLeft = ballX;
                     }
                 } else if (memdir == -1) {
@@ -91,7 +87,7 @@ public class Camera extends WorldObject {
                     if (x < ballX - offset) {
                         following = false;
                         terminalVelocity = 0;
-                        poleRight = x + Screen.WIDTH - offset;
+                        poleRight = x + GameScreen.WIDTH - offset;
                         poleLeft = ballX;
                     }
                 }
@@ -99,7 +95,7 @@ public class Camera extends WorldObject {
             if (dir == -1) {
                 if (memdir == -1) {
                     // same guard rail
-                    if (x < ballX + offset - Screen.WIDTH) {
+                    if (x < ballX + offset - GameScreen.WIDTH) {
                         //x = ballX + offset - Screen.WIDTH;
                         following = false;
                         terminalVelocity = 0;
@@ -109,7 +105,7 @@ public class Camera extends WorldObject {
                 } else if (memdir == 1) {
 
                     //ball needs to be less than camX+ScreenWidth - offset
-                    if (x > ballX + offset - Screen.WIDTH) {
+                    if (x > ballX + offset - GameScreen.WIDTH) {
                         following = false;
                         terminalVelocity = 0;
                         poleLeft = x + offset;

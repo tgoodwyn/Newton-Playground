@@ -3,12 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.graphics.objects;
+package model.game.objects;
 
 /**
  *
  * @author team 2
  */
-public class ScreenObject {
+public class SurfaceBoundary {
+    int yCoord;
+
+    public SurfaceBoundary(int y) {
+        yCoord = y;
+    }
     
+    public int getYCoord() {
+        return yCoord;
+    }
 }

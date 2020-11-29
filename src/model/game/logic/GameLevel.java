@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.logic;
 
-import model.GameWorld;
-import controller.InputController;
-import controller.InputController;
+import model.physics.ISimulatable;
+import model.physics.Simulation;
+import model.game.logic.GameWorld;
+import model.game.objects.Goal;
+import model.game.objects.SurfaceBoundary;
 
 /**
  *

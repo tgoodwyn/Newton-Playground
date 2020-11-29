@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.objects;
 
-import controller.Action;
-import controller.IControllable;
-import static controller.IControllable.PRESSED;
-import static controller.IControllable.RELEASED;
+
+import model.physics.Simulation;
 import java.awt.Graphics;
 import java.awt.Image;
 import static java.awt.event.KeyEvent.VK_A;
@@ -21,7 +19,6 @@ import view.graphics.Texture;
 import view.graphics.objects.SpriteObject;
 import java.lang.Math;
 import view.graphics.Camera;
-import view.ui.Screen;
 
 /**
  *

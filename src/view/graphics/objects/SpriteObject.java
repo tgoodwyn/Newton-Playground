@@ -6,7 +6,7 @@
 package view.graphics.objects;
 
 import java.awt.Graphics;
-import model.Simulation;
+import model.physics.Simulation;
 import view.graphics.Texture;
 
 /**

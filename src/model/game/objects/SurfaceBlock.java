@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.objects;
 
+import model.physics.Simulation;
 import view.graphics.objects.SpriteObject;
 import java.awt.Graphics;
 import java.awt.Image;

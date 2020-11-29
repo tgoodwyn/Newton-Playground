@@ -8,7 +8,7 @@ package view.ui;
 import cardMgt.CardManager;
 import cards.Card;
 import view.graphics.GraphicsRenderer;
-import model.GameLevel;
+import model.game.logic.GameLevel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,8 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
-import static view.ui.Screen.HEIGHT;
-import static view.ui.Screen.WIDTH;
 
 /**
  *
@@ -32,10 +30,12 @@ import static view.ui.Screen.WIDTH;
  */
 public class GameScreen extends Card {
 
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 500;
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
     private final GameLevel level;
-    
+
     public GameScreen(CardManager cm, String name) {
         super(cm, name);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -45,18 +45,18 @@ public class GameScreen extends Card {
         // these two methods allow key events
         //addKeyListener(this);
         setFocusable(true);
-        
+
         // TODO: code for selecting current level goes here
         // user selection will be from an enum GameLevel.Levels
         // defaulting here to STONE
         // also passing in the X position where the goal begins
         int goalXStart = 400; // default
         level = new GameLevel(GameLevel.LevelType.STONE, goalXStart);
-        
+
         // create a renderer and attach the game logic, via the level camera
         renderer = new GraphicsRenderer(level.getWorld().getCamera(), level);
         // starts the game loop
-        stopwatch = new Timer(17, gameTimer);
+        stopwatch = new Timer(7, gameTimer);
         stopwatch.start();
 
     }
@@ -74,7 +74,7 @@ public class GameScreen extends Card {
         renderer.render(g);
 
     }
-    
+
     public String getMe() {
         return "HELLO FROM SCREEN";
     }
@@ -82,9 +82,8 @@ public class GameScreen extends Card {
     public GameLevel getLevel() {
         return level;
     }
-    
+
     public GraphicsRenderer getRenderer() {
         return renderer;
     }
 }
-

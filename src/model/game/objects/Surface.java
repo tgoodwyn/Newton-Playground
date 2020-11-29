@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.objects;
 
-import model.Goal;
+import model.game.objects.Goal;
 import view.graphics.Texture;
 
 /**
@@ -15,8 +15,8 @@ import view.graphics.Texture;
 public class Surface {
 
     public static final int BLOCKSIZE = 50;
-    int beginX;
-    int endX;
+    public int beginX;
+    public int endX;
     Goal goal;
     SurfaceBoundary boundary;
     Texture bodyTexture;

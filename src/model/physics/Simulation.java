@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.physics;
 
 import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
+import model.game.objects.Birdie;
+import model.game.logic.GameLevel;
+import model.game.objects.WorldObject;
 import view.graphics.Camera;
 
 /**

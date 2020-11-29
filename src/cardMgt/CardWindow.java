@@ -4,7 +4,7 @@ import guiActions.NextAction;
 import cards.Third;
 import cards.First;
 import java.awt.Dimension;
-import model.Birdie;
+import model.game.objects.Birdie;
 import view.ui.GameScreen;
 
 /**
@@ -48,16 +48,7 @@ public class CardWindow extends javax.swing.JFrame {
     }
 
     
-// DELETE     
-//    public void putNameOnScreen(String name) {
-//        try {
-//            GameScreen gs = (GameScreen) (cm.getCards().get(1));
-//            gs.getRenderer().setName(name);
-//            //b = gs.getMe();
-//        } catch (Exception e) {
-//            System.out.println("game screen not gotten in name call");
-//        }
-//    }
+
 
     /**
      * Creates a <code>CardWindow</code>, puts the managed cards in the window,
@@ -266,11 +257,9 @@ public class CardWindow extends javax.swing.JFrame {
             GameScreen gs = (GameScreen) (cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
             Birdie birdie = gs.getLevel().getSimulation().getBirdie();
             birdie.launch(force);
-            //b = gs.getMe();
         } catch (Exception e) {
             System.out.println("wrong screen");
         }
-        //System.out.println(b);
     }//GEN-LAST:event_LaunchButtonActionPerformed
 
     /**

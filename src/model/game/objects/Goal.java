@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.game.objects;
 
 import java.awt.Image;
 import view.graphics.Texture;
@@ -12,7 +12,7 @@ import view.graphics.Texture;
  *
  * @author team 2
  */
-class Goal {
+public class Goal {
 
     private int x;
     SurfaceBoundary divideLine;
@@ -36,7 +36,7 @@ class Goal {
         return surfaceTexture;
     }
 
-    SurfaceBoundary getBoundary() {
+    public SurfaceBoundary getBoundary() {
         return divideLine;
     }
 
