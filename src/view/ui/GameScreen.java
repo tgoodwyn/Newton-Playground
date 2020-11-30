@@ -85,4 +85,10 @@ public class GameScreen extends JPanel {
     public GraphicsRenderer getRenderer() {
         return renderer;
     }
+
+    public static HighScoreManager getHsm() {
+        return hsm;
+    }
+    
+    
 }
