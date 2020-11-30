@@ -8,6 +8,7 @@ package view.graphics;
 import utilities.math.BetterRect;
 import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
+import java.util.Collections;
 import model.game.objects.Birdie;
 import model.physics.Simulation;
 import model.game.objects.WorldObject;
@@ -42,6 +43,12 @@ public class Camera extends WorldObject {
         offset = 130;
         poleLeft = -70;
         poleRight = GameScreen.WIDTH - offset;
+    }
+    
+    public void sortVisible() {
+        ViewComparator comparator = new ViewComparator();
+        Collections.sort(visibleObjects, comparator);
+        
     }
 
     public void tick() {

@@ -44,7 +44,7 @@ public class GameWorld {
         this.levelGoal = goal;
         this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
                 // its mass
-                50, sim);
+                50, sim, 2);
         // code for creating level-specific birdie goes here
         // might be moved into its own function at some point
         // TODO: fill out rest of the switch statement
@@ -71,16 +71,16 @@ public class GameWorld {
     }
      */
     public void build() {
-        addDynamicObjects();
         addStaticObjects();
+        addDynamicObjects();
         sim.separateDrawables();
     }
 
     public void addStaticObjects() {
+        //createAndAddBackground();
         createSurface();
         addSurfaceToSimulation();
-        sim.addStatic(new ShapeObject(0, 0, 50, 10, Color.WHITE, sim));
-        createAndAddBackground();
+        sim.addStatic(new ShapeObject(0, 0, 50, 10, Color.WHITE, sim, 2));
     }
 
     public void addDynamicObjects() {
@@ -92,14 +92,14 @@ public class GameWorld {
     }
 
     public void createAndAddBackground() {
-        String bgImagePath = "/sky.png";
+        String bgImagePath = "/Background 1.png";
         Texture tex = new Texture(bgImagePath);
         int bgWidth = 600;
         int bgHeight = 200;
         
         for (int x = WORLD_BEGIN; x < WORLD_END; x += bgWidth) {
         SpriteObject bg = new SpriteObject(
-                (double) x, (double) CAMERA_START_Y, bgWidth, bgHeight, tex, sim);
+                (double) x, (double) CAMERA_START_Y, bgWidth, bgHeight, tex, sim, 0);
         // add the block to the simulation
         sim.addStatic(bg);
         }
@@ -158,7 +158,7 @@ public class GameWorld {
                 }
 
                 SurfaceBlock block = new SurfaceBlock(
-                        (double) x, (double) y, step, step, curTex, sim);
+                        (double) x, (double) y, step, step, curTex, sim, 1);
                 // add the block to the simulation
                 sim.addStatic(block);
                 y -= step;

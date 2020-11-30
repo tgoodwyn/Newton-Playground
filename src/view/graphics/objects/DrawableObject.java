@@ -17,11 +17,11 @@ public abstract class DrawableObject extends WorldObject {
 
     int screenX, screenY;
     int zVal;
-    public DrawableObject(double x, double y, int width, int height, Simulation s) {
+    public DrawableObject(double x, double y, int width, int height, Simulation s, int z) {
         super(x, y, width, height, s);
         screenX = (int) x;
         screenY = (int) y;
-        //this.zVal
+        this.zVal = z;
     }
 
     public abstract void draw(Graphics g);
@@ -33,4 +33,10 @@ public abstract class DrawableObject extends WorldObject {
     public void setScreenY(int adjustedY) {
         screenY = adjustedY;
     }
+
+    public int getzVal() {
+        return zVal;
+    }
+    
+    
 }

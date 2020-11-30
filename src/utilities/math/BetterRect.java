@@ -29,6 +29,8 @@ public class BetterRect {
         for (Point c : r.getCorners()) {
             if (this.contains(c)) return true;
         }
+        
+        
         return false;
     }
     

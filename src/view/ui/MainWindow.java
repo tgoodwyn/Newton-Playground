@@ -63,6 +63,10 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         ScoreBoard = new javax.swing.JTextArea();
         scoreBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        Friction = new javax.swing.JLabel();
+        Mass = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,6 +167,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Friction:");
+
+        jLabel7.setText("Mass:");
+
+        Friction.setText(".88");
+
+        Mass.setText("50");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,9 +190,11 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(ForceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(273, 273, 273)
+                        .addGap(179, 179, 179)
+                        .addComponent(Mass)
+                        .addGap(77, 77, 77)
                         .addComponent(jLabel5)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(LevelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -204,19 +218,33 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jScrollPane4)))
                 .addContainerGap())
             .addComponent(game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addComponent(Friction)
+                .addGap(292, 292, 292))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(game, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Friction))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LaunchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ResetButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LevelSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(ForceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(Mass))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
@@ -259,6 +287,8 @@ public class MainWindow extends javax.swing.JFrame {
         GameLevel.LevelType level = GameLevel.LevelType.valueOf(x);
         GameScreen gs = (GameScreen) game; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
         gs.newLevel(800, level);
+        Friction.setText(String.valueOf(gs.getLevel().getSimulation().getLevelFriction()));
+
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void LevelSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelSelectorActionPerformed
@@ -286,29 +316,38 @@ public class MainWindow extends javax.swing.JFrame {
 
             case "Red":
                 birdie.setTexture("/balls/Red.png");
+                birdie.setMass(50);
                 break;
             case "Blue":
                 birdie.setTexture("/balls/Blue.png");
+                birdie.setMass(50);
                 break;
             case "Green":
                 birdie.setTexture("/balls/Green.png");
+                birdie.setMass(50);
                 break;
             case "Basketball":
                 birdie.setTexture("/balls/Basketball.png");
+                birdie.setMass(40);
                 break;
             case "Bowling ball":
                 birdie.setTexture("/balls/Bowling ball.png");
+                birdie.setMass(60);
                 break;
             case "Dodgeball":
                 birdie.setTexture("/balls/Dodgeball.png");
+                birdie.setMass(30);
                 break;
             case "Eyeball":
                 birdie.setTexture("/balls/Eyeball.png");
+                birdie.setMass(25);
                 break;
             case "The moon":
                 birdie.setTexture("/balls/The moon.png");
+                birdie.setMass(75);
                 break;
         }
+        Mass.setText(String.valueOf(birdie.getMass()));
     }//GEN-LAST:event_BallSelectorActionPerformed
 
     /**
@@ -363,8 +402,10 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BallSelector;
     private javax.swing.JTextField ForceInput;
+    private javax.swing.JLabel Friction;
     private javax.swing.JButton LaunchButton;
     private javax.swing.JComboBox<String> LevelSelector;
+    private javax.swing.JLabel Mass;
     private javax.swing.JButton ResetButton;
     private javax.swing.JTextArea ScoreBoard;
     private javax.swing.JPanel game;
@@ -374,6 +415,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

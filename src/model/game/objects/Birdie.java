@@ -31,8 +31,8 @@ public class Birdie extends SpriteObject {
     private double center;
 
     public Birdie(double x, double y, int width, int height, String imagePath, int mass,
-            Simulation s) {
-        super(x, y, width, height, new Texture(imagePath), s);
+            Simulation s, int z) {
+        super(x, y, width, height, new Texture(imagePath), s, z);
         this.mass = mass;
         frictionCoefficient = s.getLevelFriction();
         s.setBirdie(this);
@@ -84,5 +84,15 @@ public class Birdie extends SpriteObject {
     public double getCenter() {
         return center;
     }
+
+    public int getMass() {
+        return mass;
+    }
+
+    public void setMass(int mass) {
+        this.mass = mass;
+    }
+    
+    
 
 }

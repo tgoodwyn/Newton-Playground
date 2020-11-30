@@ -25,6 +25,7 @@ public class GameLevel implements ISimulatable {
     private boolean winStatus = false;
     private Goal goal;
     private int strokeCount;
+    private boolean gameOver = false;
 
     public enum LevelType {
         SAND, STONE, ICE, GRASS
@@ -39,7 +40,7 @@ public class GameLevel implements ISimulatable {
         // level selected by the user to build  the GameWorld
         goal = new Goal(goalXCoord, new SurfaceBoundary(0),
                 200, 300, "/WinTile.png");
-        sim = new Simulation(levelType, goal);
+        sim = new Simulation(levelType, goal, this);
 
         // the GameWorld contains the "physics" of the game
         world = new GameWorld(sim, goal, levelType);
@@ -56,14 +57,15 @@ public class GameLevel implements ISimulatable {
     public void checkWin() {
         int goalStart = goal.getX();
         int goalEnd = goal.getX() + goal.getWidth();
-        double birdiePos = world.getBirdie().getX();
-        if (birdiePos >= goalStart && birdiePos <= goalEnd) {
-            winStatus = true;
-        } else {
-            winStatus = false;
+        double birdiePos = world.getBirdie().getCenter();
+        if (!world.getBirdie().isMoving()) {
+            if (birdiePos >= goalStart && birdiePos <= goalEnd) {
+                winStatus = true;
+                gameOver = true;
+            } 
         }
     }
-    
+
     public void addToStrokeCount() {
         strokeCount++;
     }
@@ -84,7 +86,15 @@ public class GameLevel implements ISimulatable {
     public int getStrokeCount() {
         return strokeCount;
     }
-    
-    
-    
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+   
+
 }

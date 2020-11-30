@@ -19,8 +19,8 @@ public class SurfaceBlock extends SpriteObject {
     
     
     public SurfaceBlock(double x, double y, int width, int height, 
-                 Texture tex, Simulation sim) {
-        super(x, y, width, height,tex, sim);
+                 Texture tex, Simulation sim, int z) {
+        super(x, y, width, height,tex, sim, z);
     }
 
     @Override

@@ -31,8 +31,8 @@ public class Simulation {
     private Goal goal;
     private int goalDistance;
     private boolean gameOver = false;
-
-    public Simulation(GameLevel.LevelType levelType, Goal goal) {
+    private GameLevel level;
+    public Simulation(GameLevel.LevelType levelType, Goal goal, GameLevel level) {
         // TODO: Fill out switch statement
         switch (levelType) {
             case ICE:
@@ -53,6 +53,7 @@ public class Simulation {
         goalDistance = goalX;
         this.goal = goal;
         inputAllowed = true;
+        this.level = level;
     }
 
     public ArrayList<DrawableObject> getAllDrawable() {
@@ -63,6 +64,11 @@ public class Simulation {
         for (WorldObject o : dynamics) {
             o.tick();
         }
+        checkInput();
+    }
+
+    public void checkInput() {
+        gameOver = level.isGameOver();
         double difference = goalX - birdie.getX();
         birdieDirection = (difference >= 0) ? 1 : -1;
         if (birdie.isMoving() || camera.isFollowing() || gameOver) {
@@ -99,7 +105,7 @@ public class Simulation {
     public Birdie getBirdie() {
         return birdie;
     }
-    
+
     public int getDistanceToGoal() {
         int x = (int) birdie.getCenter();
         goalDistance = (birdieDirection > 0) ? goal.getLeftX() - x : x - goal.getRightX();

@@ -53,9 +53,10 @@ public class GameGraphics {
         } catch (IOException ex) {
             Logger.getLogger(GameGraphics.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //g.drawImage(tex, 0, 0, 800, 300, null);
+        g.drawImage(tex, 0, 0, 800, 300, null);
         cam.snapViewToCamera(); //
         cam.transformWorldCoordsToScreen();
+        cam.sortVisible();
         cam.visibleObjects.forEach(d -> {
             d.draw(g);
         });
@@ -73,27 +74,26 @@ public class GameGraphics {
         drawDistance(g2, sim);
         drawStatus(g2, sim);
         drawScore(g2, sim);
-                g2.setFont(new Font("Arial", Font.PLAIN, 24));
-
-                    g2.drawString("Now playing...", 625, 25);
-                    g2.drawString("Newton Golf!", 625, 55);
-            g2.drawString("", 650, 150);
-
+        g2.setFont(new Font("Arial", Font.PLAIN, 24));
+        g2.drawString("Now playing...", 625, 25);
+        g2.drawString("Newton Golf!", 625, 55);
+        g2.drawString("", 650, 150);
         if (level.getWinStatus()) {
-            g2.drawString("partner", 650, 250);
+            //g2.drawString("partner", 650, 250);
+            drawEND(g2);
         } else {
-            g2.drawString("howdy", 650, 250);
-
+            //g2.drawString("howdy", 650, 250);
+                        //drawEND(g2);
         }
     }
 
-    
     public void drawScore(Graphics2D g2, Simulation sim) {
         g2.drawRect(445, statusBarBorderY, 124, statusBarBorderH);
         g2.drawString("# STROKES", 450, statusBarLabelY);
-        String strokes =  String.valueOf(level.getStrokeCount()) ;
+        String strokes = String.valueOf(level.getStrokeCount());
         g2.drawString(strokes, 500, statusBarContentY);
     }
+
     public void drawDistance(Graphics2D g2, Simulation sim) {
         // first get direction to goal as an int
         int iDir = sim.getBirdieDirection();
@@ -119,7 +119,7 @@ public class GameGraphics {
         g2.drawString(launch, 300, statusBarContentY);
     }
 
-    public void drawEND(Graphics g) {
+    public void drawEND(Graphics2D g) {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 28));
 

@@ -16,8 +16,8 @@ import model.physics.Simulation;
 public class ShapeObject extends DrawableObject {
     
     private Color color;
-    public ShapeObject(double x, double y, int width, int height, Color color, Simulation s) {
-        super(x, y, width, height, s);
+    public ShapeObject(double x, double y, int width, int height, Color color, Simulation s, int z) {
+        super(x, y, width, height, s, z);
         this.color = color;
     }
 
