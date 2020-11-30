@@ -5,7 +5,7 @@
  */
 package view.ui;
 
-import view.graphics.GraphicsRenderer;
+import view.graphics.GameGraphics;
 import model.game.logic.GameLevel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,7 +25,7 @@ public class GameScreen extends JPanel {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 300;
     private final Timer stopwatch;
-    public GraphicsRenderer renderer;
+    public GameGraphics renderer;
     private GameLevel level;
     public static final HighScoreManager hsm = new HighScoreManager();
     
@@ -35,19 +35,15 @@ public class GameScreen extends JPanel {
 
         // light blue        
         this.setBackground(new Color(154, 218, 252));
-        // these two methods allow key events
-        //addKeyListener(this);
-        setFocusable(true);
+        //setFocusable(true);
 
-        // TODO: code for selecting current level goes here
-        // user selection will be from an enum GameLevel.Levels
-        // defaulting here to STONE
-        // also passing in the X position where the goal begins
+  
+        //  passing in the X position where the goal begins
         int goalXStart = 400; // default
-        level = new GameLevel(GameLevel.LevelType.STONE, goalXStart);
+        level = new GameLevel(GameLevel.LevelType.GRASS, goalXStart);
 
         // create a renderer and attach the game logic, via the level camera
-        renderer = new GraphicsRenderer(level.getWorld().getCamera(), level);
+        renderer = new GameGraphics(level.getWorld().getCamera(), level);
         // starts the game loop
         stopwatch = new Timer(17, gameTimer);
         stopwatch.start();
@@ -71,7 +67,7 @@ public class GameScreen extends JPanel {
     public void newLevel(int goalXStart, GameLevel.LevelType levelType) {
         level = new GameLevel(levelType, goalXStart);
         // create a renderer and attach the game logic, via the level camera
-        renderer = new GraphicsRenderer(level.getWorld().getCamera(), level);
+        renderer = new GameGraphics(level.getWorld().getCamera(), level);
     }
 
     public String getMe() {
@@ -82,7 +78,7 @@ public class GameScreen extends JPanel {
         return level;
     }
 
-    public GraphicsRenderer getRenderer() {
+    public GameGraphics getRenderer() {
         return renderer;
     }
 

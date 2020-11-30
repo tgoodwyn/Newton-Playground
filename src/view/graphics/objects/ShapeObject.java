@@ -5,6 +5,7 @@
  */
 package view.graphics.objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import model.physics.Simulation;
 
@@ -13,13 +14,16 @@ import model.physics.Simulation;
  * @author team 2
  */
 public class ShapeObject extends DrawableObject {
-
-    public ShapeObject(double x, double y, int width, int height, Simulation s) {
+    
+    private Color color;
+    public ShapeObject(double x, double y, int width, int height, Color color, Simulation s) {
         super(x, y, width, height, s);
+        this.color = color;
     }
 
     @Override
     public void draw(Graphics g) {
+        g.setColor(color);
         g.fillRect(screenX,screenY,width,height);
     }
 

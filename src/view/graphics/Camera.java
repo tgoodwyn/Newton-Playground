@@ -58,28 +58,22 @@ public class Camera extends WorldObject {
         }
         if (following) {
             follow();
-            //System.out.println("following");
         }
         visibleObjects.clear();
     }
 
     public void follow() {
-        //int center = followTarget.getCenter();
         if (!followTarget.isMoving()) {
             if (dir == 1) {
                 if (memdir == 1) {
                     // this code is purely a guard rail
                     if (x > ballX - offset) {
-                        //x = ballX - offset;
                         following = false;
                         terminalVelocity = 0;
                         poleRight = x + GameScreen.WIDTH - offset;
                         poleLeft = ballX;
                     }
                 } else if (memdir == -1) {
-                    //ball needs to be greater than camX+offset
-                    // ballX > camX + offset
-                    // 140 > 0 + 20
                     if (x < ballX - offset) {
                         following = false;
                         terminalVelocity = 0;
@@ -92,7 +86,6 @@ public class Camera extends WorldObject {
                 if (memdir == -1) {
                     // same guard rail
                     if (x < ballX + offset - GameScreen.WIDTH) {
-                        //x = ballX + offset - Screen.WIDTH;
                         following = false;
                         terminalVelocity = 0;
                         poleRight = ballX;

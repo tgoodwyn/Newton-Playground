@@ -16,11 +16,12 @@ import model.game.objects.WorldObject;
 public abstract class DrawableObject extends WorldObject {
 
     int screenX, screenY;
-
+    int zVal;
     public DrawableObject(double x, double y, int width, int height, Simulation s) {
         super(x, y, width, height, s);
         screenX = (int) x;
         screenY = (int) y;
+        //this.zVal
     }
 
     public abstract void draw(Graphics g);

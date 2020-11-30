@@ -22,7 +22,7 @@ import model.physics.Simulation;
  *
  * @author team 2
  */
-public class GraphicsRenderer {
+public class GameGraphics {
 
     private final Camera cam;
     private final GameLevel level;
@@ -41,7 +41,7 @@ public class GraphicsRenderer {
 
     private String name = "Anonymous";
 
-    public GraphicsRenderer(Camera c, GameLevel level) {
+    public GameGraphics(Camera c, GameLevel level) {
         this.cam = c;
         this.level = level;
     }
@@ -49,11 +49,11 @@ public class GraphicsRenderer {
     public void render(Graphics g) {
         Image tex = null;
         try {
-            tex = ImageIO.read(getClass().getResourceAsStream("/Background 1.png"));
+            tex = ImageIO.read(getClass().getResourceAsStream("/sky1.png"));
         } catch (IOException ex) {
-            Logger.getLogger(GraphicsRenderer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GameGraphics.class.getName()).log(Level.SEVERE, null, ex);
         }
-        g.drawImage(tex, 0, 0, 800, 300, null);
+        //g.drawImage(tex, 0, 0, 800, 300, null);
         cam.snapViewToCamera(); //
         cam.transformWorldCoordsToScreen();
         cam.visibleObjects.forEach(d -> {
@@ -136,7 +136,7 @@ public class GraphicsRenderer {
         try {
             tex = ImageIO.read(getClass().getResourceAsStream("/Background 4.png"));
         } catch (IOException ex) {
-            Logger.getLogger(GraphicsRenderer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GameGraphics.class.getName()).log(Level.SEVERE, null, ex);
         }
         g.drawImage(tex, x, y, w, h, null);
     }

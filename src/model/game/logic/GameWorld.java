@@ -5,6 +5,7 @@
  */
 package model.game.logic;
 
+import java.awt.Color;
 import model.physics.Simulation;
 import model.game.objects.Birdie;
 import view.graphics.Camera;
@@ -13,19 +14,21 @@ import model.game.objects.Goal;
 import model.game.objects.Surface;
 import model.game.objects.SurfaceBlock;
 import view.graphics.objects.ShapeObject;
+import view.graphics.objects.SpriteObject;
 
 /**
  *
  * @author team 2
  */
 public class GameWorld {
-    
+
     private static final int WORLD_BEGIN = - 10000;
     private static final int WORLD_END = 20000;
-    
+
     private final Camera camera;
     private final Birdie birdie;
-
+    public static final int CAMERA_START_Y = 200;
+    public static final int CAMERA_START_X = -50;
     private final Simulation sim;
     private Surface levelSurface;
     private final Goal levelGoal;
@@ -39,23 +42,25 @@ public class GameWorld {
         this.levelType = levelType;
         this.sim = sim;
         this.levelGoal = goal;
-
+        this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
+                // its mass
+                50, sim);
         // code for creating level-specific birdie goes here
         // might be moved into its own function at some point
         // TODO: fill out rest of the switch statement
-        switch (levelType) {
-            case STONE:
-                // its x,y,w,h
-                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
-                        // its mass
-                        50, sim);
-                break;
-            default:
-                this.birdie = new Birdie(0, 50, 50, 50, "/Red.png",
-                        50, sim);
-                break;
-        }
-        this.camera = new Camera(-50, 200, 0, 0, sim, this.birdie);
+//        switch (levelType) {
+//            case STONE:
+//                // its x,y,w,h
+//                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
+//                        // its mass
+//                        50, sim);
+//                break;
+//            default:
+//                this.birdie = new Birdie(0, 50, 50, 50, "/Red.png",
+//                        50, sim);
+//                break;
+//        }
+        this.camera = new Camera(CAMERA_START_X, CAMERA_START_Y, 0, 0, sim, this.birdie);
 
     }
 
@@ -66,15 +71,16 @@ public class GameWorld {
     }
      */
     public void build() {
-        addStaticObjects();
         addDynamicObjects();
+        addStaticObjects();
         sim.separateDrawables();
     }
 
     public void addStaticObjects() {
         createSurface();
         addSurfaceToSimulation();
-        sim.addStatic(new ShapeObject(0,0,50,50,sim));
+        sim.addStatic(new ShapeObject(0, 0, 50, 10, Color.WHITE, sim));
+        createAndAddBackground();
     }
 
     public void addDynamicObjects() {
@@ -83,6 +89,20 @@ public class GameWorld {
         sim.setCamera(camera);
         sim.addDynamic(this.birdie);
         sim.setBirdie(birdie);
+    }
+
+    public void createAndAddBackground() {
+        String bgImagePath = "/sky.png";
+        Texture tex = new Texture(bgImagePath);
+        int bgWidth = 600;
+        int bgHeight = 200;
+        
+        for (int x = WORLD_BEGIN; x < WORLD_END; x += bgWidth) {
+        SpriteObject bg = new SpriteObject(
+                (double) x, (double) CAMERA_START_Y, bgWidth, bgHeight, tex, sim);
+        // add the block to the simulation
+        sim.addStatic(bg);
+        }
     }
 
     public void createSurface() {
@@ -101,7 +121,7 @@ public class GameWorld {
             case SAND:
                 surfaceImagePath = "/SAND.png";
                 break;
-            
+
         }
 
         levelSurface = new Surface(WORLD_BEGIN, WORLD_END,
@@ -122,7 +142,6 @@ public class GameWorld {
         // different texture will be assigned based on location
         // of the surface block
         Texture curTex;
-
         // nested while loops that fill in the surface model,
         // separating goal blocks from non-goal blocks
         int x = xStart;
@@ -139,7 +158,7 @@ public class GameWorld {
                 }
 
                 SurfaceBlock block = new SurfaceBlock(
-                        (double)x, (double)y, step, step, curTex, sim);
+                        (double) x, (double) y, step, step, curTex, sim);
                 // add the block to the simulation
                 sim.addStatic(block);
                 y -= step;
