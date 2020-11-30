@@ -81,9 +81,9 @@ public class GameGraphics {
         if (level.getWinStatus()) {
             //g2.drawString("partner", 650, 250);
             drawEND(g2);
-        } else {
+        } else if (level.isGameOver()) {
             //g2.drawString("howdy", 650, 250);
-            //drawEND(g2);
+            drawEND(g2);
         }
     }
 

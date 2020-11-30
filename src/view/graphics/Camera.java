@@ -166,4 +166,10 @@ public class Camera extends WorldObject {
         return poleRight;
     }
 
+    public void setFollowing(boolean following) {
+        this.following = following;
+    }
+    
+    
+
 }

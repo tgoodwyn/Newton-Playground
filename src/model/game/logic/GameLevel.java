@@ -9,10 +9,12 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import model.game.objects.Birdie;
 import model.physics.ISimulatable;
 import model.physics.Simulation;
 import model.game.objects.Goal;
 import model.game.objects.SurfaceBoundary;
+import view.graphics.Camera;
 import view.ui.GameScreen;
 import view.ui.MainWindow;
 
@@ -61,6 +63,32 @@ public class GameLevel implements ISimulatable {
     public void tick() {
         sim.simulate();
         checkWin();
+        checkFail();
+    }
+
+    public void checkFail() {
+        Birdie birdie = world.getBirdie();
+        double birdiePos = birdie.getCenter();
+        Camera cam = sim.getCamera();
+        if (birdiePos >= world.WORLD_END) {
+            birdie.setMovingStatus(false);
+            birdie.setX(world.WORLD_END);
+            winStatus = false;
+            gameOver = true;
+            cam.setFollowing(false);
+            cam.setX(world.WORLD_END - 500);
+        }
+        if (birdiePos <= world.WORLD_BEGIN) {
+            birdie.setMovingStatus(false);
+            birdie.setX(world.WORLD_BEGIN);
+            winStatus = false;
+            gameOver = true;
+
+            cam.setFollowing(false);
+            cam.setX(world.WORLD_BEGIN - 500);
+
+        }
+
     }
 
     public void checkWin() {
@@ -72,7 +100,7 @@ public class GameLevel implements ISimulatable {
                 winStatus = true;
                 gameOver = true;
                 if (!updated) {
-                updateScoresDB();
+                    updateScoresDB();
                 }
             }
         }
@@ -116,5 +144,5 @@ public class GameLevel implements ISimulatable {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
-    
+
 }

@@ -22,8 +22,8 @@ import view.graphics.objects.SpriteObject;
  */
 public class GameWorld {
 
-    private static final int WORLD_BEGIN = - 10000;
-    private static final int WORLD_END = 20000;
+    public static final int WORLD_BEGIN = - 10000;
+    public static final int WORLD_END = 20000;
 
     private final Camera camera;
     private final Birdie birdie;
@@ -170,5 +170,7 @@ public class GameWorld {
     public Birdie getBirdie() {
         return birdie;
     }
+    
+    
 
 }

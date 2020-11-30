@@ -92,6 +92,10 @@ public class Birdie extends SpriteObject {
     public void setMass(int mass) {
         this.mass = mass;
     }
+
+    public void setMovingStatus(boolean movingStatus) {
+        this.movingStatus = movingStatus;
+    }
     
     
 

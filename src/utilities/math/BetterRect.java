@@ -68,4 +68,8 @@ public class BetterRect {
         return height;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
 }
