@@ -1,8 +1,11 @@
 package view.ui;
 
 import java.awt.Dimension;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import model.game.logic.GameLevel;
 import model.game.objects.Birdie;
+import model.physics.Simulation;
 import view.ui.GameScreen;
 
 /**
@@ -21,9 +24,14 @@ public class MainWindow extends javax.swing.JFrame {
      * the end of the fold and uses a variety of layouts. You didn't notice
      * these if you used the graphical tools in NetBeans.
      */
+    private GameScreen gs;
+    private Birdie birdie;
+
     public MainWindow() {
         initComponents();
         //this.setPreferredSize(new Dimension(800,100));
+        gs = (GameScreen) game;
+        birdie = gs.getLevel().getSimulation().getBirdie();
     }
 
     /**
@@ -99,6 +107,11 @@ public class MainWindow extends javax.swing.JFrame {
         setResizable(false);
 
         ForceInput.setText("600");
+        ForceInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ForceInputActionPerformed(evt);
+            }
+        });
 
         LaunchButton.setText("<html><b>Launch</b></html>");
         LaunchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +145,13 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setToolTipText("");
+
+        nameField.setText("Anonymous");
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Name");
 
@@ -272,23 +292,34 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void LaunchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LaunchButtonActionPerformed
         // TODO add your handling code here:
+        clampForce();
         String text = ForceInput.getText();
         int force = Integer.parseInt(text);
-        GameScreen gs = (GameScreen) game; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
-        Birdie birdie = gs.getLevel().getSimulation().getBirdie();
+        GameLevel gl = gs.getLevel();
+        Simulation sim = gl.getSimulation();
+        Birdie birdie = sim.getBirdie();
         birdie.launch(force);
-        gs.getLevel().addToStrokeCount();
+        if (sim.isInputAllowed()) {
+            gl.addToStrokeCount();
+        }
 
     }//GEN-LAST:event_LaunchButtonActionPerformed
 
+    private int generateGoalPos() {
+        double min = 750;
+        double max = 2500;
+        int goalPos = (int) (Math.random() * ((max - min) + 1) + min);
+        return goalPos;
+    }
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
         // TODO add your handling code here:
         String x = LevelSelector.getSelectedItem().toString();
         GameLevel.LevelType level = GameLevel.LevelType.valueOf(x);
-        GameScreen gs = (GameScreen) game; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
-        gs.newLevel(800, level);
+        gs.newLevel(generateGoalPos(), level);
         Friction.setText(String.valueOf(gs.getLevel().getSimulation().getLevelFriction()));
 
+
+        Mass.setText(String.valueOf(birdie.getMass()));
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void LevelSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelSelectorActionPerformed
@@ -298,19 +329,18 @@ public class MainWindow extends javax.swing.JFrame {
     private void scoreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreBtnActionPerformed
         // TODO add your handling code here:
         String name = nameField.getText();
-        GameScreen gs = (GameScreen) game; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
         int score = gs.getLevel().getStrokeCount();
         gs.getHsm().addScore(name, score);
         ScoreBoard.setText(gs.getHsm().getHighscoreString());
+
     }//GEN-LAST:event_scoreBtnActionPerformed
+
 
     private void BallSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BallSelectorActionPerformed
         // TODO add your handling code here:
 
         String x = BallSelector.getSelectedItem().toString();
         System.out.println(x);
-        GameScreen gs = (GameScreen) game; //(cm.getCards().get(cardDisplayArea.getVisibleChildNumber()));
-        Birdie birdie = gs.getLevel().getSimulation().getBirdie();
 
         switch (x) {
 
@@ -349,6 +379,33 @@ public class MainWindow extends javax.swing.JFrame {
         }
         Mass.setText(String.valueOf(birdie.getMass()));
     }//GEN-LAST:event_BallSelectorActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void clampForce() {
+        String input = ForceInput.getText();
+        int massLimit = birdie.getMass() + 5;
+        int val = 0;
+        try {
+            val = Integer.parseInt(input);
+            if (val > 5000) {
+                val = 5000;
+            } else if (val < massLimit) {
+                val = massLimit;
+            }
+            ForceInput.setText(String.valueOf(val));
+
+        } catch (Exception e) {
+            ForceInput.setText("600");
+        }
+    }
+    private void ForceInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForceInputActionPerformed
+        // TODO add your handling code here:
+        clampForce();
+    }//GEN-LAST:event_ForceInputActionPerformed
 
     /**
      * Attempts to set the look-and-feel for the application. In this case it is
@@ -398,6 +455,14 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+    }
+
+    public JTextArea getScoreBoard() {
+        return ScoreBoard;
+    }
+
+    public String getPlayerName() {
+        return nameField.getText();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BallSelector;

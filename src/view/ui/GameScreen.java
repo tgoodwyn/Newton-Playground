@@ -39,8 +39,8 @@ public class GameScreen extends JPanel {
 
   
         //  passing in the X position where the goal begins
-        int goalXStart = 400; // default
-        level = new GameLevel(GameLevel.LevelType.GRASS, goalXStart);
+        int goalXStart = 750; // default
+        level = new GameLevel(GameLevel.LevelType.GRASS, goalXStart, this);
 
         // create a renderer and attach the game logic, via the level camera
         renderer = new GameGraphics(level.getWorld().getCamera(), level);
@@ -65,7 +65,7 @@ public class GameScreen extends JPanel {
     }
 
     public void newLevel(int goalXStart, GameLevel.LevelType levelType) {
-        level = new GameLevel(levelType, goalXStart);
+        level = new GameLevel(levelType, goalXStart, this);
         // create a renderer and attach the game logic, via the level camera
         renderer = new GameGraphics(level.getWorld().getCamera(), level);
     }

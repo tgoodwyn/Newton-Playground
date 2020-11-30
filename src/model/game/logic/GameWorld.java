@@ -42,24 +42,24 @@ public class GameWorld {
         this.levelType = levelType;
         this.sim = sim;
         this.levelGoal = goal;
-        this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
+        //this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
                 // its mass
-                50, sim, 2);
+                //50, sim, 2);
         // code for creating level-specific birdie goes here
         // might be moved into its own function at some point
         // TODO: fill out rest of the switch statement
-//        switch (levelType) {
-//            case STONE:
-//                // its x,y,w,h
-//                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
-//                        // its mass
-//                        50, sim);
-//                break;
-//            default:
-//                this.birdie = new Birdie(0, 50, 50, 50, "/Red.png",
-//                        50, sim);
-//                break;
-//        }
+        switch (levelType) {
+            case STONE:
+                // its x,y,w,h
+                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
+                        // its mass
+                        50, sim, 2);
+                break;
+            default:
+                this.birdie = new Birdie(0, 50, 50, 50, "/balls/Red.png",
+                        50, sim, 2);
+                break;
+        }
         this.camera = new Camera(CAMERA_START_X, CAMERA_START_Y, 0, 0, sim, this.birdie);
 
     }

@@ -31,7 +31,7 @@ public class GameGraphics {
     private static final int popupHeight = 160;
     private static final int popupX = 250;
     private static final int popupY = 60;
-    private static final int popupTextX = popupX + (popupWidth / 6);
+    private static final int popupTextX = popupX + (popupWidth / 3);
     private static final int popupTextY = popupY + (popupHeight / 3);
     private static final int statusBarLabelY = 25;
     private static final int statusBarBorderY = 2;
@@ -83,7 +83,7 @@ public class GameGraphics {
             drawEND(g2);
         } else {
             //g2.drawString("howdy", 650, 250);
-                        //drawEND(g2);
+            //drawEND(g2);
         }
     }
 
@@ -99,16 +99,22 @@ public class GameGraphics {
         int iDir = sim.getBirdieDirection();
         // translate to being either "Right" or "Left"
         String dir = (iDir > 0) ? ">>>>>" : "<<<<<";
+        double distance = sim.getDistanceToGoal();
+        double w = (sim.getGoal().getWidth()/2);
+        if (distance > w) {
+            if (iDir > 0) {
+                g2.drawString((int) (distance) + " meters  " + dir, 50, statusBarContentY);
+            } else {
+                g2.drawString(dir + "  " + (int) (distance) + " meters", 50, statusBarContentY);
+            }
+        } else {
 
+            g2.drawString("<<<<< >>>>>" , 50, statusBarContentY);
+        }
         // Put the draw code for static screen objects here
         g2.drawRect(44, statusBarBorderY, 188, statusBarBorderH);
         g2.drawString("DISTANCE", 80, statusBarLabelY);
 
-        if (iDir > 0) {
-            g2.drawString((int) (sim.getDistanceToGoal()) + " meters  " + dir, 50, statusBarContentY);
-        } else {
-            g2.drawString(dir + "  " + (int) (sim.getDistanceToGoal()) + " meters", 50, statusBarContentY);
-        }
     }
 
     public void drawStatus(Graphics2D g2, Simulation sim) {
@@ -127,8 +133,9 @@ public class GameGraphics {
         drawBG(g, popupX, popupY, popupWidth, popupHeight);
         g.drawRect(popupX, popupY, popupWidth, popupHeight);
         //g.setColor(Color.WHITE);
+        String text = (level.getWinStatus()) ? "Victory!!!" : "Failure!!!";
+        g.drawString(text, popupTextX, popupTextY);
 
-        g.drawString("Game over, mate", popupTextX, popupTextY);
     }
 
     public void drawBG(Graphics g, int x, int y, int w, int h) {

@@ -52,6 +52,10 @@ public class Goal {
     public int getHeight() {
         return height;
     }
+    
+    public double getCenter() {
+        return leftX + (width / 2);
+    }
 
     public int getLeftX() {
         return leftX;

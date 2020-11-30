@@ -27,9 +27,9 @@ public class Simulation {
     private Camera camera;
     private int birdieDirection;
     private boolean inputAllowed;
-    int goalX;
+    double goalX;
     private Goal goal;
-    private int goalDistance;
+    private double goalDistance;
     private boolean gameOver = false;
     private GameLevel level;
     public Simulation(GameLevel.LevelType levelType, Goal goal, GameLevel level) {
@@ -49,7 +49,7 @@ public class Simulation {
                 break;
 
         }
-        this.goalX = goal.getX();
+        this.goalX = goal.getCenter();
         goalDistance = goalX;
         this.goal = goal;
         inputAllowed = true;
@@ -108,8 +108,8 @@ public class Simulation {
 
     public int getDistanceToGoal() {
         int x = (int) birdie.getCenter();
-        goalDistance = (birdieDirection > 0) ? goal.getLeftX() - x : x - goal.getRightX();
-        return goalDistance;
+        goalDistance = (birdieDirection > 0) ? goal.getCenter() - x : x - goal.getCenter();
+        return (int)goalDistance;
     }
 
     public void setBirdie(Birdie birdie) {
@@ -138,6 +138,10 @@ public class Simulation {
 
     public void setInputAllowed(boolean inputAllowed) {
         this.inputAllowed = inputAllowed;
+    }
+
+    public Goal getGoal() {
+        return goal;
     }
 
 }
