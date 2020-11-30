@@ -46,12 +46,12 @@ public class GameWorld {
         switch (levelType) {
             case STONE:
                 // its x,y,w,h
-                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/Ball.png",
+                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
                         // its mass
                         50, sim);
                 break;
             default:
-                this.birdie = new Birdie(0, 50, 50, 50, "/cannon_ball.png",
+                this.birdie = new Birdie(0, 50, 50, 50, "/Red.png",
                         50, sim);
                 break;
         }

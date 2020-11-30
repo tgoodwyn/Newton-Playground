@@ -33,11 +33,12 @@ public class GraphicsRenderer {
     private static final int popupY = 60;
     private static final int popupTextX = popupX + (popupWidth / 6);
     private static final int popupTextY = popupY + (popupHeight / 3);
-    private static final int statusBarLabelY = 25 ;
-    private static final int statusBarBorderY = 40;
+    private static final int statusBarLabelY = 25;
+    private static final int statusBarBorderY = 2;
+    private static final int statusBarBorderH = 35;
     private static final int statusBarContentY = 65;
     //25,40,65
-    
+
     private String name = "Anonymous";
 
     public GraphicsRenderer(Camera c, GameLevel level) {
@@ -66,46 +67,56 @@ public class GraphicsRenderer {
     public void drawScreenObjects(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         Simulation sim = level.getSimulation();
+        g2.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(3));
+        drawDistance(g2, sim);
+        drawStatus(g2, sim);
+        drawScore(g2, sim);
+                g2.setFont(new Font("Arial", Font.PLAIN, 24));
 
+                    g2.drawString("Now playing...", 625, 25);
+                    g2.drawString("Newton Golf!", 625, 55);
+            g2.drawString("", 650, 150);
+
+        if (level.getWinStatus()) {
+            g2.drawString("partner", 650, 250);
+        } else {
+            g2.drawString("howdy", 650, 250);
+
+        }
+    }
+
+    
+    public void drawScore(Graphics2D g2, Simulation sim) {
+        g2.drawRect(445, statusBarBorderY, 124, statusBarBorderH);
+        g2.drawString("# STROKES", 450, statusBarLabelY);
+        String strokes =  String.valueOf(level.getStrokeCount()) ;
+        g2.drawString(strokes, 500, statusBarContentY);
+    }
+    public void drawDistance(Graphics2D g2, Simulation sim) {
         // first get direction to goal as an int
         int iDir = sim.getBirdieDirection();
         // translate to being either "Right" or "Left"
         String dir = (iDir > 0) ? ">>>>>" : "<<<<<";
-        g2.setFont(new Font("Arial", Font.PLAIN, 20));
-        g2.setColor(Color.WHITE);
+
         // Put the draw code for static screen objects here
-        g2.setStroke(new BasicStroke(3));
-        g2.drawRect(44, statusBarBorderY, 188, 40);
+        g2.drawRect(44, statusBarBorderY, 188, statusBarBorderH);
         g2.drawString("DISTANCE", 80, statusBarLabelY);
 
         if (iDir > 0) {
             g2.drawString((int) (sim.getDistanceToGoal()) + " meters  " + dir, 50, statusBarContentY);
         } else {
             g2.drawString(dir + "  " + (int) (sim.getDistanceToGoal()) + " meters", 50, statusBarContentY);
-
         }
-        g2.setStroke(new BasicStroke(3));
-        g2.drawRect(295, statusBarBorderY, 108, 40);
-        g2.drawString("STATUS", 300, statusBarLabelY);
-        String launch = (sim.isInputAllowed()) ? "READY" : "DISABLED";
+    }
+
+    public void drawStatus(Graphics2D g2, Simulation sim) {
+
+        g2.drawRect(295, statusBarBorderY, 108, statusBarBorderH);
+        g2.drawString("STATUS", 310, statusBarLabelY);
+        String launch = (sim.isInputAllowed()) ? "  READY" : " WAITING";
         g2.drawString(launch, 300, statusBarContentY);
-        //String b = "Distance : " + (int) (sim.getDistanceToGoal());
-        //g.drawString(b, 450, 50);
-
-        //String c = "Camera x : " + (int) (sim.getCamera().getX());
-        //String d = "PoleRight : " + (int) (sim.getCamera().getPoleRight());
-        //String e = "PoleLeft : " + (int) (sim.getCamera().getPoleLeft());
-        //g.drawString(c, 450, 50);
-        //g.drawString(d, 550, 50);
-        //g.drawString(e, 650, 50);
-        if (level.getWinStatus()) {
-            g2.drawString("partner", 450, 50);
-        } else {
-            g2.drawString("howdy", 450, 50);
-
-        }
-
-        //g.drawString("Name: " + name, 150, 80);
     }
 
     public void drawEND(Graphics g) {

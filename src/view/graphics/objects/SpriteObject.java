@@ -15,7 +15,7 @@ import view.graphics.Texture;
  */
 public class SpriteObject extends DrawableObject {
     
-    protected final Texture tex;
+    protected Texture tex;
     
     public SpriteObject(double x, double y, int width, int height, 
             Texture tex, Simulation sim) {
@@ -26,6 +26,9 @@ public class SpriteObject extends DrawableObject {
     @Override
     public void tick() {}
 
+    public void setTexture(String path) {
+        this.tex = new Texture(path);
+    }
     
     public void draw(Graphics g) {
         g.drawImage(tex.getTexture(),screenX,screenY,width,height,null);

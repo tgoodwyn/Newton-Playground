@@ -30,6 +30,7 @@ public class Simulation {
     int goalX;
     private Goal goal;
     private int goalDistance;
+    private boolean gameOver = false;
 
     public Simulation(GameLevel.LevelType levelType, Goal goal) {
         // TODO: Fill out switch statement
@@ -64,7 +65,7 @@ public class Simulation {
         }
         double difference = goalX - birdie.getX();
         birdieDirection = (difference >= 0) ? 1 : -1;
-        if (birdie.isMoving() || camera.isFollowing()) {
+        if (birdie.isMoving() || camera.isFollowing() || gameOver) {
             inputAllowed = false;
         } else {
             inputAllowed = true;
