@@ -60,8 +60,6 @@ public class MainWindow extends javax.swing.JFrame {
         ResetButton = new javax.swing.JButton();
         BallSelector = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         nameField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -70,7 +68,6 @@ public class MainWindow extends javax.swing.JFrame {
         game = new GameScreen();
         jScrollPane4 = new javax.swing.JScrollPane();
         ScoreBoard = new javax.swing.JTextArea();
-        scoreBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Friction = new javax.swing.JLabel();
@@ -136,11 +133,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Ball color");
-
-        jLabel3.setText("Background color");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Red", "Blue", "Green" }));
+        jLabel2.setText("Ball type");
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -180,13 +173,6 @@ public class MainWindow extends javax.swing.JFrame {
         ScoreBoard.setRows(5);
         jScrollPane4.setViewportView(ScoreBoard);
 
-        scoreBtn.setText("ADD SCORE");
-        scoreBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scoreBtnActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Friction:");
 
         jLabel7.setText("Mass:");
@@ -220,18 +206,13 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BallSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(scoreBtn)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BallSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(81, 81, 81)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
@@ -269,21 +250,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scoreBtn)
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel4)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BallSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(BallSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -316,6 +291,7 @@ public class MainWindow extends javax.swing.JFrame {
         String x = LevelSelector.getSelectedItem().toString();
         GameLevel.LevelType level = GameLevel.LevelType.valueOf(x);
         gs.newLevel(generateGoalPos(), level);
+        birdie = gs.getLevel().getSimulation().getBirdie();
         Friction.setText(String.valueOf(gs.getLevel().getSimulation().getLevelFriction()));
 
 
@@ -325,15 +301,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void LevelSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelSelectorActionPerformed
 
     }//GEN-LAST:event_LevelSelectorActionPerformed
-
-    private void scoreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreBtnActionPerformed
-        // TODO add your handling code here:
-        String name = nameField.getText();
-        int score = gs.getLevel().getStrokeCount();
-        gs.getHsm().addScore(name, score);
-        ScoreBoard.setText(gs.getHsm().getHighscoreString());
-
-    }//GEN-LAST:event_scoreBtnActionPerformed
 
 
     private void BallSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BallSelectorActionPerformed
@@ -474,10 +441,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton ResetButton;
     private javax.swing.JTextArea ScoreBoard;
     private javax.swing.JPanel game;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -489,6 +454,5 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField nameField;
-    private javax.swing.JButton scoreBtn;
     // End of variables declaration//GEN-END:variables
 }
