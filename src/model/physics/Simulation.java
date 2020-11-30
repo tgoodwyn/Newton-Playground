@@ -28,6 +28,8 @@ public class Simulation {
     private int birdieDirection;
     private boolean inputAllowed;
     int goalX;
+    private Goal goal;
+    private int goalDistance;
 
     public Simulation(GameLevel.LevelType levelType, Goal goal) {
         // TODO: Fill out switch statement
@@ -47,6 +49,8 @@ public class Simulation {
 
         }
         this.goalX = goal.getX();
+        goalDistance = goalX;
+        this.goal = goal;
         inputAllowed = true;
     }
 
@@ -93,6 +97,12 @@ public class Simulation {
 
     public Birdie getBirdie() {
         return birdie;
+    }
+    
+    public int getDistanceToGoal() {
+        int x = (int) birdie.getCenter();
+        goalDistance = (birdieDirection > 0) ? goal.getLeftX() - x : x - goal.getRightX();
+        return goalDistance;
     }
 
     public void setBirdie(Birdie birdie) {

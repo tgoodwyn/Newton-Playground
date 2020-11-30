@@ -52,4 +52,14 @@ public class Goal {
     public int getHeight() {
         return height;
     }
+
+    public int getLeftX() {
+        return leftX;
+    }
+
+    public int getRightX() {
+        return leftX + width;
+    }
+    
+    
 }

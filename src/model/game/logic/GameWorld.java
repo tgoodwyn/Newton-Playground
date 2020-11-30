@@ -19,7 +19,10 @@ import view.graphics.objects.ShapeObject;
  * @author team 2
  */
 public class GameWorld {
-
+    
+    private static final int WORLD_BEGIN = - 10000;
+    private static final int WORLD_END = 20000;
+    
     private final Camera camera;
     private final Birdie birdie;
 
@@ -101,7 +104,7 @@ public class GameWorld {
             
         }
 
-        levelSurface = new Surface(-500, 10000,
+        levelSurface = new Surface(WORLD_BEGIN, WORLD_END,
                 levelGoal.getBoundary(), levelGoal, surfaceImagePath);
     }
 
