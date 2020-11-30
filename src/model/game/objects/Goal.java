@@ -14,10 +14,11 @@ import view.graphics.Texture;
  */
 public class Goal {
 
-    private int x;
     SurfaceBoundary divideLine;
     private int width;
     private int height;
+    private int leftX;
+    private int rightX;
 
 
 
@@ -25,7 +26,7 @@ public class Goal {
     Texture objectTexture;
 
     public Goal(int x, SurfaceBoundary y, int width, int height, String path) {
-        this.x = x;
+        this.leftX = x;
         this.divideLine = y;
         this.width = width;
         this.height = height;
@@ -41,7 +42,7 @@ public class Goal {
     }
 
         public int getX() {
-        return x;
+        return leftX;
     }
 
     public int getWidth() {

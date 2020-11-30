@@ -20,7 +20,7 @@ public class ShapeObject extends DrawableObject {
 
     @Override
     public void draw(Graphics g) {
-        g.drawRect(screenX,screenY,width,height);
+        g.fillRect(screenX,screenY,width,height);
     }
 
     @Override

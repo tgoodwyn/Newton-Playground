@@ -123,7 +123,7 @@ public class Camera extends WorldObject {
         }
     }
 
-    public void snap() {
+    public void snapViewToCamera() {
         viewPlane.x = x;
         viewPlane.y = y;
 
@@ -135,7 +135,7 @@ public class Camera extends WorldObject {
                 done = true;
                 }
      */
-    public void clip() {
+    public void transformWorldCoordsToScreen() {
         int c = 0;
         for (DrawableObject obj : sim.getAllDrawable()) {
             if (viewPlane.intersects(obj)) {

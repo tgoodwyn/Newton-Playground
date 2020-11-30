@@ -9,6 +9,7 @@ import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
 import model.game.objects.Birdie;
 import model.game.logic.GameLevel;
+import model.game.objects.Goal;
 import model.game.objects.WorldObject;
 import view.graphics.Camera;
 
@@ -28,18 +29,24 @@ public class Simulation {
     private boolean inputAllowed;
     int goalX;
 
-    public Simulation(GameLevel.LevelType levelType, int goalX) {
+    public Simulation(GameLevel.LevelType levelType, Goal goal) {
         // TODO: Fill out switch statement
         switch (levelType) {
-            case STONE:
-                this.levelFrictionCoefficient = .85;
+            case ICE:
+                this.levelFrictionCoefficient = .95;
                 break;
-            default:
-                this.levelFrictionCoefficient = .75;
+            case STONE:
+                this.levelFrictionCoefficient = .92;
+                break;
+            case GRASS:
+                this.levelFrictionCoefficient = .88;
+                break;
+            case SAND:
+                this.levelFrictionCoefficient = .85;
                 break;
 
         }
-        this.goalX = goalX;
+        this.goalX = goal.getX();
         inputAllowed = true;
     }
 

@@ -85,7 +85,6 @@ public class GameWorld {
     public void createSurface() {
         // initialize surface based on levelType
         String surfaceImagePath = "";
-        // TODO: add other surface types
         switch (levelType) {
             case STONE:
                 surfaceImagePath = "/Stone.png";

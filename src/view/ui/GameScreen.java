@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import utilities.highScores.HighScoreManager;
 
 /**
  *
@@ -26,7 +27,8 @@ public class GameScreen extends JPanel {
     private final Timer stopwatch;
     public GraphicsRenderer renderer;
     private GameLevel level;
-
+    public static final HighScoreManager hsm = new HighScoreManager();
+    
     public GameScreen() {
         //super(cm, name);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
