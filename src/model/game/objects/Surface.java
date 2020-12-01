@@ -6,12 +6,18 @@
 package model.game.objects;
 
 import model.game.objects.Goal;
-import view.graphics.Texture;
+import utilities.Texture;
 
 /**
  *
  * @author team 2
+ * 
+ * The Surface class is only used when the physics world (instance of 
+ * GameWorld) is created.  It has data for the sprite used by the surface
+ * as well as the boundary
  */
+
+
 public class Surface {
 
     public static final int BLOCKSIZE = 50;

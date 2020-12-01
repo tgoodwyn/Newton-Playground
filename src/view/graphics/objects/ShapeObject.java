@@ -12,6 +12,9 @@ import model.physics.Simulation;
 /**
  *
  * @author team 2
+ * 
+ * Contrasted with SpriteObject - just a simple rectangle drawn on screen
+ * Parameters: dimensions, location, color
  */
 public class ShapeObject extends DrawableObject {
     

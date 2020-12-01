@@ -5,18 +5,27 @@
  */
 package view.graphics;
 
-import utilities.math.BetterRect;
+import utilities.BetterRect;
 import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
 import java.util.Collections;
-import model.game.objects.Birdie;
+import view.graphics.objects.Birdie;
 import model.physics.Simulation;
-import model.game.objects.WorldObject;
+import model.physics.WorldObject;
 import view.ui.GameScreen;
 
 /**
  *
  * @author team 2
+ * 
+ * The most complicated class in the project...
+ * 
+ * Performs the following jobs:
+ * - Determines which DrawableObjects are actually visible
+ * - Transforms visibleObject's world coordinates to screen coordinates
+ * - Follows the Birdie dynamically as it moves along the level
+ * - Follow code is purely a luxury but is designed to reduce motion sickness!
+ * 
  */
 public class Camera extends WorldObject {
 
@@ -129,12 +138,7 @@ public class Camera extends WorldObject {
 
     }
 
-    /* generic debug code 
-    boolean done = false;
-                if (!done) {
-                done = true;
-                }
-     */
+
     public void transformWorldCoordsToScreen() {
         int c = 0;
         for (DrawableObject obj : sim.getAllDrawable()) {

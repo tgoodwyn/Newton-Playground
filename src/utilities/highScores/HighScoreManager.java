@@ -10,7 +10,11 @@ import java.io.*;
 
 /**
  *
- * @author justi
+ * @author team 2
+ * 
+ * Singleton owned by the GameScreen - called when user completes a level
+ * - adds score to a data file
+ * - updates GUI text area with complete list of scores
  */
 public class HighScoreManager {
     // An arraylist of the type "score" we will use to work with the scores inside the class

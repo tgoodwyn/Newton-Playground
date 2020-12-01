@@ -8,7 +8,10 @@ package utilities.highScores;
 import java.util.Comparator;
 /**
  *
- * @author justi
+ * @author team 2
+ * 
+ * Custom comparator - sorts scores by lowest first,
+ * since our scoring system is akin to that of golf
  */
 public class ScoreComparator implements Comparator<Score> {
             public int compare(Score score1, Score score2) {

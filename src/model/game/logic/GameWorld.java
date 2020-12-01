@@ -7,28 +7,30 @@ package model.game.logic;
 
 import java.awt.Color;
 import model.physics.Simulation;
-import model.game.objects.Birdie;
+import view.graphics.objects.Birdie;
 import view.graphics.Camera;
-import view.graphics.Texture;
+import utilities.Texture;
 import model.game.objects.Goal;
 import model.game.objects.Surface;
-import model.game.objects.SurfaceBlock;
+import view.graphics.objects.SurfaceBlock;
 import view.graphics.objects.ShapeObject;
 import view.graphics.objects.SpriteObject;
 
 /**
  *
  * @author team 2
+ * the GameWorld class is what actually populates the objects 
+ * belonging to the physics simulation at the time of a level being created
  */
 public class GameWorld {
 
     public static final int WORLD_BEGIN = - 10000;
     public static final int WORLD_END = 20000;
+    public static final int CAMERA_START_Y = 200;
+    public static final int CAMERA_START_X = -50;
 
     private final Camera camera;
     private final Birdie birdie;
-    public static final int CAMERA_START_Y = 200;
-    public static final int CAMERA_START_X = -50;
     private final Simulation sim;
     private Surface levelSurface;
     private final Goal levelGoal;
@@ -42,33 +44,16 @@ public class GameWorld {
         this.levelType = levelType;
         this.sim = sim;
         this.levelGoal = goal;
-        //this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
+        this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
                 // its mass
-                //50, sim, 2);
-        // code for creating level-specific birdie goes here
-        // might be moved into its own function at some point
-        // TODO: fill out rest of the switch statement
-        switch (levelType) {
-            case STONE:
-                // its x,y,w,h
-                this.birdie = new Birdie(0.0, 50.0, 50, 50, "/balls/Red.png",
-                        // its mass
-                        50, sim, 2);
-                break;
-            default:
-                this.birdie = new Birdie(0, 50, 50, 50, "/balls/Red.png",
-                        50, sim, 2);
-                break;
-        }
+                50, sim, 2);
         this.camera = new Camera(CAMERA_START_X, CAMERA_START_Y, 0, 0, sim, this.birdie);
 
     }
 
-
-    /* not used for now    
-    private void createBirdieAndCamera(Simulation sim) {
-
-    }
+    /**
+     * BUILDs the "physical" world
+     * ie, generates data for all objects that will be controlled by the simulation
      */
     public void build() {
         addStaticObjects();
@@ -76,14 +61,14 @@ public class GameWorld {
         sim.separateDrawables();
     }
 
-    public void addStaticObjects() {
+    private void addStaticObjects() {
         //createAndAddBackground();
         createSurface();
         addSurfaceToSimulation();
         sim.addStatic(new ShapeObject(0, 0, 50, 10, Color.WHITE, sim, 2));
     }
 
-    public void addDynamicObjects() {
+    private void addDynamicObjects() {
         // add any dynamic objects
         sim.addDynamic(this.camera);
         sim.setCamera(camera);
@@ -91,7 +76,7 @@ public class GameWorld {
         sim.setBirdie(birdie);
     }
 
-    public void createAndAddBackground() {
+    private void createAndAddBackground() {
         String bgImagePath = "/Background 1.png";
         Texture tex = new Texture(bgImagePath);
         int bgWidth = 600;
@@ -105,7 +90,7 @@ public class GameWorld {
         }
     }
 
-    public void createSurface() {
+    private void createSurface() {
         // initialize surface based on levelType
         String surfaceImagePath = "";
         switch (levelType) {

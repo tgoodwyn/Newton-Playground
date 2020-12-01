@@ -3,17 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.game.objects;
+package model.physics;
 
 import model.physics.Simulation;
 import model.physics.ISimulatable;
-import utilities.math.BetterRect;
+import utilities.BetterRect;
 import java.awt.Image;
 import java.awt.Rectangle;
 
 /**
  *
  * @author team 2
+ * 
+ * The second highest level in the object hierarchy
+ * All WorldObjects implement ISimulatable and are therefore
+ * part of the physics loop
+ * 
  */
 public abstract class WorldObject extends BetterRect implements ISimulatable {
 

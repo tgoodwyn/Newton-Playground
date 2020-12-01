@@ -7,21 +7,29 @@ package model.physics;
 
 import view.graphics.objects.DrawableObject;
 import java.util.ArrayList;
-import model.game.objects.Birdie;
+import view.graphics.objects.Birdie;
 import model.game.logic.GameLevel;
 import model.game.objects.Goal;
-import model.game.objects.WorldObject;
 import view.graphics.Camera;
 
 /**
  *
  * @author team 2
+ * 
+ * The Simulation class is the publisher for the physics loop -
+ * its simulate method calls the tick method on all ISimulatable objects
+ * 
+ * It also:
+ * -sets the friction for the level based on selected level type
+ * -determines whether or not movement is allowed based on whether
+ * objects (namely, the Camera and the Birdie) are still moving,
+ * or whether or not the game is over
  */
 public class Simulation {
 
     ArrayList<WorldObject> dynamics = new ArrayList<>();
-    ArrayList<WorldObject> statics = new ArrayList<WorldObject>();
-    ArrayList<DrawableObject> allDrawable = new ArrayList<DrawableObject>();
+    ArrayList<WorldObject> statics = new ArrayList<>();
+    ArrayList<DrawableObject> allDrawable = new ArrayList<>();
     private double levelFrictionCoefficient;
     private Birdie birdie;
     private Camera camera;
@@ -33,7 +41,6 @@ public class Simulation {
     private boolean gameOver = false;
     private GameLevel level;
     public Simulation(GameLevel.LevelType levelType, Goal goal, GameLevel level) {
-        // TODO: Fill out switch statement
         switch (levelType) {
             case ICE:
                 this.levelFrictionCoefficient = .95;
@@ -60,6 +67,14 @@ public class Simulation {
         return allDrawable;
     }
 
+    /**
+     * The equivalent to the "notify observers" method
+     * for the observer pattern
+     * 
+     * Also, since the simulation knows whether any object is still moving, 
+     * it performs the check for whether or not input is allowed
+     * (Input not allowed if objects still moving)
+     */
     public void simulate() {
         for (WorldObject o : dynamics) {
             o.tick();
@@ -87,6 +102,11 @@ public class Simulation {
         statics.add(wo);
     }
 
+    /**
+     * Called when the GameWorld is created
+     * Used to reduce the size of objects that the 
+     * Camera has to check whether or not they are visible
+     */
     public void separateDrawables() {
         ArrayList<WorldObject> all = new ArrayList<WorldObject>();
         all.addAll(dynamics);

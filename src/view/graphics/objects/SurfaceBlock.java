@@ -3,17 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.game.objects;
+package view.graphics.objects;
 
 import model.physics.Simulation;
 import view.graphics.objects.SpriteObject;
 import java.awt.Graphics;
 import java.awt.Image;
-import view.graphics.Texture;
+import utilities.Texture;
 
 /**
  *
  * @author team 2
+ * 
+ * The sprite objects comprising the level that the Birdie moves along
+ * 
  */
 public class SurfaceBlock extends SpriteObject {
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.graphics;
+package utilities;
 
 import java.awt.Image;
 import java.io.IOException;
@@ -14,6 +14,10 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author team 2
+ * 
+ * This class allows us to quickly create images using only
+ * the file path of the image
+ * 
  */
 public class Texture {
 

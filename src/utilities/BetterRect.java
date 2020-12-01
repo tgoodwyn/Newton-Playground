@@ -3,13 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilities.math;
+package utilities;
 
 import java.awt.Point;
 
 /**
  *
  * @author team 2
+ * 
+ * Created to align with our intuitive notion of world coordinates,
+ * as opposed to standard Java library Rectangle class whose coordinates
+ * system origin sits at the top left of the screen
+ * 
  */
 public class BetterRect {
 
@@ -25,6 +30,14 @@ public class BetterRect {
     public int width;
     public int height;
     
+    /**
+     *
+     * @param r
+     * @return
+     * 
+     * This is how collisions are checked in our simulation,
+     * primarily by the camera's viewplane with world objects
+     */
     public Boolean intersects(BetterRect r) {
         for (Point c : r.getCorners()) {
             if (this.contains(c)) return true;
@@ -34,7 +47,7 @@ public class BetterRect {
         return false;
     }
     
-    public Point[] getCorners() {
+    private Point[] getCorners() {
         int a = (int) x;
         int b = (int) y;
         Point[] corners = new Point[]{
@@ -47,7 +60,7 @@ public class BetterRect {
         return corners;
     }
     
-    public Boolean contains(Point p) {
+    private Boolean contains(Point p) {
         if (p.x >= this.x && p.x < this.x + this.width
             && p.y < this.y && p.y > this.y - this.height) return true;
         return false;

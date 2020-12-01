@@ -11,6 +11,8 @@ import view.graphics.objects.DrawableObject;
 /**
  *
  * @author tgood
+ * 
+ * A comparator for determining the z depth of DrawableObjects
  */
 public class ViewComparator implements Comparator<DrawableObject> {
             public int compare(DrawableObject score1, DrawableObject score2) {

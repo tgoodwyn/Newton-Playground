@@ -9,7 +9,7 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import model.game.objects.Birdie;
+import view.graphics.objects.Birdie;
 import model.physics.ISimulatable;
 import model.physics.Simulation;
 import model.game.objects.Goal;
@@ -21,6 +21,10 @@ import view.ui.MainWindow;
 /**
  *
  * @author team 2
+ * the GameLevel class is the container for the GameWorld
+ * and the caller of the Simulation.simulate method
+ * A new GameLevel is created every time the "new game" 
+ * button is clicked
  */
 public class GameLevel implements ISimulatable {
 
@@ -41,13 +45,15 @@ public class GameLevel implements ISimulatable {
         SAND, STONE, ICE, GRASS
     }
 
-    // OPTIONAL: in addition to passing the starting coord
-    // we could also pass in the dimensions of the goal area
-    // right now they are defaulted to 500 x 300
+    /**
+     *the GameLevel constructor creates the simulation, the goal, 
+     *and the Birdie. It then passes these, along with the specific 
+     *level selected by the user to build  the GameWorld
+     * @param levelType
+     * @param goalXCoord
+     * @param gs
+     */
     public GameLevel(LevelType levelType, int goalXCoord, GameScreen gs) {
-        // the GameLevel constructor creates the simulation, the goal, 
-        // and the Birdie. It then passes these, along with the specific 
-        // level selected by the user to build  the GameWorld
         goal = new Goal(goalXCoord, new SurfaceBoundary(0),
                 200, 300, "/WinTile.png");
         sim = new Simulation(levelType, goal, this);

@@ -21,6 +21,16 @@ import model.physics.Simulation;
 /**
  *
  * @author team 2
+ * 
+ * The publisher for the graphics loop
+ * 
+ * Calls the draw method on all visible objects in the simulation
+ * (determined by the Camera object)
+ * 
+ * Also draws non-physical objects whose position is locked on the screen,
+ * e.g. text elements
+ * Uses many private methods to accomplish the latter
+ * 
  */
 public class GameGraphics {
 
@@ -37,7 +47,6 @@ public class GameGraphics {
     private static final int statusBarBorderY = 2;
     private static final int statusBarBorderH = 35;
     private static final int statusBarContentY = 65;
-    //25,40,65
 
     private String name = "Anonymous";
 
@@ -46,7 +55,7 @@ public class GameGraphics {
         this.level = level;
     }
 
-    public void render(Graphics g) {
+    public void drawGame(Graphics g) {
         Image tex = null;
         try {
             tex = ImageIO.read(getClass().getResourceAsStream("/sky1.png"));
@@ -61,11 +70,10 @@ public class GameGraphics {
             d.draw(g);
         });
         drawScreenObjects(g);
-        //drawEND(g);
 
     }
 
-    public void drawScreenObjects(Graphics g) {
+    private void drawScreenObjects(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         Simulation sim = level.getSimulation();
         g2.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -79,22 +87,20 @@ public class GameGraphics {
         g2.drawString("Newton Golf!", 625, 55);
         g2.drawString("", 650, 150);
         if (level.getWinStatus()) {
-            //g2.drawString("partner", 650, 250);
             drawEND(g2);
         } else if (level.isGameOver()) {
-            //g2.drawString("howdy", 650, 250);
             drawEND(g2);
         }
     }
 
-    public void drawScore(Graphics2D g2, Simulation sim) {
+    private void drawScore(Graphics2D g2, Simulation sim) {
         g2.drawRect(445, statusBarBorderY, 124, statusBarBorderH);
         g2.drawString("# STROKES", 450, statusBarLabelY);
         String strokes = String.valueOf(level.getStrokeCount());
         g2.drawString(strokes, 500, statusBarContentY);
     }
 
-    public void drawDistance(Graphics2D g2, Simulation sim) {
+    private void drawDistance(Graphics2D g2, Simulation sim) {
         // first get direction to goal as an int
         int iDir = sim.getBirdieDirection();
         // translate to being either "Right" or "Left"
@@ -117,7 +123,7 @@ public class GameGraphics {
 
     }
 
-    public void drawStatus(Graphics2D g2, Simulation sim) {
+    private void drawStatus(Graphics2D g2, Simulation sim) {
 
         g2.drawRect(295, statusBarBorderY, 108, statusBarBorderH);
         g2.drawString("STATUS", 310, statusBarLabelY);
@@ -125,20 +131,17 @@ public class GameGraphics {
         g2.drawString(launch, 300, statusBarContentY);
     }
 
-    public void drawEND(Graphics2D g) {
+    private void drawEND(Graphics2D g) {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 28));
-
-        //g.fillRect(200, 100, 400, 160);
         drawBG(g, popupX, popupY, popupWidth, popupHeight);
         g.drawRect(popupX, popupY, popupWidth, popupHeight);
-        //g.setColor(Color.WHITE);
         String text = (level.getWinStatus()) ? "Victory!!!" : "Failure!!!";
         g.drawString(text, popupTextX, popupTextY);
 
     }
 
-    public void drawBG(Graphics g, int x, int y, int w, int h) {
+    private void drawBG(Graphics g, int x, int y, int w, int h) {
         Image tex = null;
         try {
             tex = ImageIO.read(getClass().getResourceAsStream("/Background 4.png"));
@@ -148,9 +151,6 @@ public class GameGraphics {
         g.drawImage(tex, x, y, w, h, null);
     }
 
-    public void setName(String name) {
-        this.name = name;
-        System.out.println("set name called");
-    }
+
 
 }

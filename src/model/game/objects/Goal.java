@@ -6,11 +6,14 @@
 package model.game.objects;
 
 import java.awt.Image;
-import view.graphics.Texture;
+import utilities.Texture;
 
 /**
  *
  * @author team 2
+ * The Goal class has all the data pertaining to
+ * the "goal" for the level - where its located, its width,
+ * and its texture (image)
  */
 public class Goal {
 

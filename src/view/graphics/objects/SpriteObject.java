@@ -7,11 +7,15 @@ package view.graphics.objects;
 
 import java.awt.Graphics;
 import model.physics.Simulation;
-import view.graphics.Texture;
+import utilities.Texture;
 
 /**
  *
  * @author team 2
+ * 
+ * Objects drawn on screen that have an associated image file
+ * (most objects in the game, e.g. the surface blocks and the Birdie)
+ * 
  */
 public class SpriteObject extends DrawableObject {
     

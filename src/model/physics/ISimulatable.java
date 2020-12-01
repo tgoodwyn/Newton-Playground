@@ -8,6 +8,15 @@ package model.physics;
 /**
  *
  * @author team 2
+ * 
+ * This is the interface that all physics objects implement
+ * It requires the implementation of a single method: tick
+ * This method gets called for all physics object by
+ * the instance of Simulation belonging to the GameLevel
+ * 
+ * It is the equivalent to an "update" method in the observer pattern, 
+ * and objects that implement it are the observer objects for the physics loop
+ * 
  */
 public interface ISimulatable {
     

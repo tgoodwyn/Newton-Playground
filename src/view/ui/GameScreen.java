@@ -19,6 +19,12 @@ import utilities.highScores.HighScoreManager;
 /**
  *
  * @author team 2
+ * 
+ * This class inherits from JPanel and contains all graphical elements
+ * pertaining to the display of the game
+ * 
+ * It also creates and run the "game loop", which is set by a Swing timer that 
+ * calls the two main publisher loops: the physics loop and the graphics loop
  */
 public class GameScreen extends JPanel {
 
@@ -60,7 +66,7 @@ public class GameScreen extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        renderer.render(g);
+        renderer.drawGame(g);
 
     }
 
@@ -70,9 +76,7 @@ public class GameScreen extends JPanel {
         renderer = new GameGraphics(level.getWorld().getCamera(), level);
     }
 
-    public String getMe() {
-        return "HELLO FROM SCREEN";
-    }
+
 
     public GameLevel getLevel() {
         return level;

@@ -7,11 +7,15 @@ package view.graphics.objects;
 
 import java.awt.Graphics;
 import model.physics.Simulation;
-import model.game.objects.WorldObject;
+import model.physics.WorldObject;
 
 /**
  *
  * @author team 2
+ * 
+ * The observer object for the graphics loop
+ * 
+ * 
  */
 public abstract class DrawableObject extends WorldObject {
 

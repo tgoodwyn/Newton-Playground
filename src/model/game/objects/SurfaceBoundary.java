@@ -8,6 +8,11 @@ package model.game.objects;
 /**
  *
  * @author team 2
+ * 
+ * This class is mainly used to improve readability - it only
+ * has 1 member variable
+ * Its purpose is to clearly delineate the y coordinate where the Birdie rests
+ * 
  */
 public class SurfaceBoundary {
     int yCoord;

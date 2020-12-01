@@ -3,30 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.game.objects;
+package view.graphics.objects;
 
 
 import model.physics.Simulation;
 
-import view.graphics.Texture;
+import utilities.Texture;
 import view.graphics.objects.SpriteObject;
 import view.graphics.Camera;
 
 /**
  *
  * @author team 2
+ * 
+ * The Birdie class is the object that the user launches and is trying
+ * to land on top of the goal (checkered surface) in the game
+ * 
+ * It has all of physics properties of the object, including the mass 
+ * which can be set dynamically by GUI ("Ball type")
+ * The other physical properties are determined by how much force the user inputs,
+ * calculated with the Newtonian law: f=ma
+ * 
+ * Once the acceleration is calculated, this is used to calculate the velocity
+ * In order to ensure the ball comes to a stop, the acceleration and velocity
+ * are multiplied by the friction coefficient set by the level type
+ * 
  */
 public class Birdie extends SpriteObject {
 
-    // the birdie has mass
     private int mass;
     private double velocity;
     private double acceleration;
-    //private double force = 900;
     private Simulation sim;
     private boolean movingStatus = false;
     private double frictionCoefficient;
-    //private int dampener;
     private Camera camera;
     private double center;
 
@@ -54,8 +64,6 @@ public class Birdie extends SpriteObject {
             if (Math.abs(velocity) < 0.05) {
                 movingStatus = false;
 
-//                System.out.println("current ball pos = " + x);
-//                System.out.println("new trigger = " + newTrigger);
             }
 
         }

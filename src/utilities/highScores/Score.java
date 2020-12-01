@@ -9,7 +9,10 @@ import java.io.Serializable;
 
 /**
  *
- * @author justi
+ * @author team 2
+ * 
+ * Used by HighScoreManager
+ * 
  */
 public class Score implements Serializable{
         private int score;
