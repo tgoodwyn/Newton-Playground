@@ -138,7 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel4.setText("Name");
 
-        LevelSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SAND", "STONE", "ICE", "GRASS" }));
+        LevelSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GRASS", "SAND", "STONE", "ICE" }));
         LevelSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LevelSelectorActionPerformed(evt);
