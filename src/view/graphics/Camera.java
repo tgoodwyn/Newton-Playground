@@ -39,6 +39,9 @@ public class Camera extends WorldObject {
     private int memdir = 0;
     private int offset;
     private double terminalVelocity;
+    // the two "poles" are the boundaries that the ball must cross
+    // in order for the camera to begin following it
+    // this area inside the poles is referred to as the camera "trap"
     private double poleLeft;
     private double poleRight;
 
@@ -65,6 +68,9 @@ public class Camera extends WorldObject {
         ballX = followTarget.getCenter();
         if (ballX > poleRight && followTarget.isMoving()) {
             terminalVelocity = followTarget.getVelocity();
+            // the velocity and direction (memdir) at time of the ball
+            // exceeding the boundaries of the camera "trap" 
+            // are stored and used in the follow function
             memdir = 1;
             following = true;
         } else if (ballX < poleLeft && followTarget.isMoving()) {
@@ -78,6 +84,12 @@ public class Camera extends WorldObject {
         visibleObjects.clear();
     }
 
+    /**
+     * The way the camera follows the Birdie would be considered a combination
+     * of a "trap" camera and "look-ahead" camera
+     * These types of camera are described in the following video:
+     * https://www.youtube.com/watch?v=l9G6MNhfV7M
+     */
     public void follow() {
         if (!followTarget.isMoving()) {
             if (dir == 1) {
@@ -100,7 +112,6 @@ public class Camera extends WorldObject {
             }
             if (dir == -1) {
                 if (memdir == -1) {
-                    // same guard rail
                     if (x < ballX + offset - GameScreen.WIDTH) {
                         following = false;
                         terminalVelocity = 0;
@@ -108,8 +119,6 @@ public class Camera extends WorldObject {
                         poleLeft = x + offset;
                     }
                 } else if (memdir == 1) {
-
-                    //ball needs to be less than camX+ScreenWidth - offset
                     if (x > ballX + offset - GameScreen.WIDTH) {
                         following = false;
                         terminalVelocity = 0;
@@ -122,6 +131,11 @@ public class Camera extends WorldObject {
 
         }
         if (following) {
+            // the camera slows down once the ball stops moving
+            // this speed is called the damp speed
+            // and is the speed the camera moves while catching up to the ball
+            // and while readjusting itself so that the greatest visible area
+            // is in the direction of the goal
             int dampAbs = 3;
             int dampAmt = (terminalVelocity > 0) ? dampAbs : -dampAbs;
             if (followTarget.isMoving()) {
